@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Full Panel</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Full Panel">
+<meta property="og:description" content="Practice growth strategy for therapists.">
+<meta property="og:url" content="https://fullpanel.co/">
+<meta name="description" content="Practice growth strategy for therapists: referral relationships, directories, search, ads and social, built to fit the ethics you practice under.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<style>
+:root{
+  --paper:#f6f3ec; --paper-deep:#ece6da; --surface-raised:#fdfcf9;
+  --ink:#1b2422; --ink-muted:#545e5a; --line:#d9d2c4; --line-strong:#858c87;
+  --pine:#16433e; --on-pine:#f6f3ec; --pine-soft:#d4e2dc;
+  --ember:#b04a26; --on-ember:#fdfcf9; --ember-soft:#f1dccd; --sand:#e8d5b5;
+  --success:#2d6a4a; --danger:#a3372b; --focus-ring:var(--ember);
+  --mark-sand:#e8d5b5; --mark-ember:#b04a26; --mark-soft:#d4e2dc;
+  --shadow-float:0 1px 2px rgba(27,36,34,.06),0 12px 32px rgba(27,36,34,.08);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --container:1160px; --measure:640px;
+  --r-sm:6px; --r-md:12px; --r-lg:20px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --paper:#121917; --paper-deep:#18211f; --surface-raised:#1d2826;
+  --ink:#eee9df; --ink-muted:#a9b2ad; --line:#2d3a37; --line-strong:#6f7d78;
+  --pine:#8cc2b4; --on-pine:#0f1d1a; --pine-soft:#1f3a35;
+  --ember:#e48a63; --on-ember:#1a0f0a; --ember-soft:#3b2519; --sand:#3a3122;
+  --success:#7cc49b; --danger:#f08a7c; --mark-ember:#e48a63;
+  --shadow-float:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#121917; --paper-deep:#18211f; --surface-raised:#1d2826;
+  --ink:#eee9df; --ink-muted:#a9b2ad; --line:#2d3a37; --line-strong:#6f7d78;
+  --pine:#8cc2b4; --on-pine:#0f1d1a; --pine-soft:#1f3a35;
+  --ember:#e48a63; --on-ember:#1a0f0a; --ember-soft:#3b2519; --sand:#3a3122;
+  --success:#7cc49b; --danger:#f08a7c; --mark-ember:#e48a63;
+  --shadow-float:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/28px var(--sans);-webkit-font-smoothing:antialiased;margin:0}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;border-radius:4px}
+a{color:inherit}
+h1,h2,h3,p,ul,ol{margin:0}
+.wrap{max-width:var(--container);margin-inline:auto;padding-inline:32px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--pine);color:var(--on-pine);padding:8px 16px;border-radius:999px;z-index:50}
+.skip:focus{left:16px}
+
+/* type */
+.eyebrow{font:600 13px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
+.band .eyebrow,.muted-eyebrow{color:var(--ink-muted)}
+.display{font:400 64px/68px var(--serif);letter-spacing:-.02em;font-variation-settings:"opsz" 72;text-wrap:balance}
+.h1{font:400 44px/50px var(--serif);letter-spacing:-.015em;font-variation-settings:"opsz" 60;text-wrap:balance}
+.h2{font:400 32px/38px var(--serif);letter-spacing:-.01em;font-variation-settings:"opsz" 36;text-wrap:balance}
+.h3{font:600 21px/28px var(--sans);letter-spacing:-.005em}
+.lede{font-size:20px;line-height:32px;color:var(--ink-muted);max-width:var(--measure)}
+.small{font-size:15px;line-height:24px}
+.muted{color:var(--ink-muted)}
+.quote{font:italic 400 24px/34px var(--serif);font-variation-settings:"opsz" 24}
+.prose{max-width:var(--measure);display:grid;gap:20px}
+.prose p{color:var(--ink)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:999px;border:1px solid transparent;font:600 15px/20px var(--sans);text-decoration:none;cursor:pointer;transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out}
+.btn-primary{background:var(--pine);color:var(--on-pine)}
+.btn-primary:hover{background:var(--ink)}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn-secondary:hover{border-color:var(--ink)}
+.btn-on-pine{background:var(--on-pine);color:var(--pine)}
+.link{color:var(--pine);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.link:hover{text-decoration-thickness:2px}
+.arrow::after{content:"\2192";margin-left:4px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line);transition:box-shadow .18s ease-out,background-color .18s ease-out}
+.site-header.scrolled{background:var(--surface-raised);box-shadow:var(--shadow-float);border-bottom-color:transparent}
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--pine)}
+.brand svg{width:30px;height:auto;display:block}
+.wordmark{font:500 24px/28px var(--serif);letter-spacing:-.01em;font-variation-settings:"opsz" 36;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:28px;list-style:none;padding:0}
+.nav a:not(.btn){font:600 15px/20px var(--sans);text-decoration:none;color:var(--ink)}
+.nav a:not(.btn):hover,.nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.menu-btn{display:none;background:none;border:1px solid var(--line-strong);color:var(--ink);border-radius:999px;min-height:44px;padding:0 18px;font:600 15px/20px var(--sans);cursor:pointer}
+.mobile-sheet{display:none}
+
+/* sections */
+.section{padding-block:96px}
+.band{background:var(--paper-deep)}
+.section-head{display:grid;gap:12px;max-width:var(--measure);margin-bottom:48px}
+.section-head .lede{margin-top:4px}
+
+/* hero */
+.hero{padding-block:112px 96px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:64px;align-items:center}
+.hero-copy{display:grid;gap:24px}
+.hero-note{font-size:15px;line-height:24px;color:var(--ink-muted)}
+.panel-card{background:var(--pine);border-radius:var(--r-lg);padding:28px 28px 24px;color:var(--on-pine)}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;font:600 13px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.panel-grid{display:grid;grid-template-columns:44px repeat(5,minmax(0,1fr));gap:8px;align-items:center}
+.panel-grid .day,.panel-grid .time{font:500 13px/16px var(--sans);color:var(--on-pine);opacity:.85;text-align:center}
+.panel-grid .time{text-align:left;font-variant-numeric:tabular-nums}
+.slot{aspect-ratio:1/1;border-radius:var(--r-sm);background:var(--pine-soft)}
+.slot.open{background:transparent;box-shadow:inset 0 0 0 1.5px var(--pine-soft)}
+.slot.new{background:var(--mark-ember)}
+.panel-cap{margin-top:16px;font:italic 400 18px/26px var(--serif);color:var(--on-pine)}
+@media (prefers-reduced-motion:no-preference){
+  .slot.fill{animation:fill .5s ease-out both;animation-delay:calc(var(--i) * 40ms + 300ms)}
+  @keyframes fill{from{background:transparent;box-shadow:inset 0 0 0 1.5px var(--pine-soft)}to{background:var(--pine-soft);box-shadow:none}}
+}
+
+/* problem */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.feel-list{list-style:none;padding:0;display:grid;gap:0}
+.feel-list li{padding-block:20px;border-top:1px solid var(--line-strong)}
+.feel-list li:last-child{border-bottom:1px solid var(--line-strong)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.card{display:flex;flex-direction:column;gap:12px;padding:32px;background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-lg)}
+.num{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--r-md);background:var(--pine-soft);color:var(--pine);font:500 20px/1 var(--serif)}
+.card .h3{margin-top:8px}
+.card p{color:var(--ink-muted)}
+.card .foot{margin-top:auto;padding-top:12px}
+.tag{display:inline-block;padding:2px 8px;border-radius:var(--r-sm);background:var(--pine-soft);color:var(--ink);font:600 13px/20px var(--sans)}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;padding:0;counter-reset:step}
+.step{padding-top:24px;border-top:1px solid var(--line-strong);counter-increment:step;display:grid;gap:8px;align-content:start}
+.step::before{content:counter(step,decimal-leading-zero);font:400 32px/1 var(--serif);color:var(--ember);margin-bottom:8px}
+.step p{color:var(--ink-muted)}
+
+/* ethics */
+.ethics{display:flex;gap:16px;align-items:flex-start;padding:16px 24px;background:var(--pine-soft);border-radius:var(--r-md);max-width:var(--measure)}
+.ethics-label{flex:none;font:600 13px/24px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.ethics p{font-size:15px;line-height:24px;color:var(--ink)}
+.principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;list-style:none;padding:0}
+.principles li{display:grid;gap:4px;padding-top:20px;border-top:1px solid var(--line-strong)}
+.principles strong{font-weight:600}
+.principles span{color:var(--ink-muted)}
+
+/* proof */
+.proof{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.facts{display:grid;gap:0;list-style:none;padding:0}
+.facts li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--line-strong);align-items:baseline}
+.facts li:last-child{border-bottom:1px solid var(--line-strong)}
+.fact-num{font:400 40px/1 var(--serif);color:var(--pine);font-variant-numeric:lining-nums;letter-spacing:-.01em}
+.facts p{color:var(--ink)}
+.facts .src{display:block;color:var(--ink-muted);font-size:15px;line-height:24px}
+.fine{font-size:15px;line-height:24px;color:var(--ink-muted);max-width:var(--measure)}
+
+
+/* faq */
+.faq{max-width:760px;display:grid}
+.faq details{border-top:1px solid var(--line-strong)}
+.faq details:last-child{border-bottom:1px solid var(--line-strong)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding-block:20px;font:600 18px/26px var(--sans)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 24px/26px var(--serif);color:var(--pine)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{padding-bottom:20px;color:var(--ink-muted);max-width:var(--measure)}
+
+/* cta */
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:48px 40px;background:var(--pine);color:var(--on-pine);border-radius:var(--r-lg)}
+.cta .h2{max-width:560px;color:var(--on-pine)}
+.cta p{margin-top:8px;font-size:15px;line-height:24px}
+
+/* service detail */
+.svc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;padding-block:56px;border-top:1px solid var(--line-strong)}
+.svc:first-child{border-top:0;padding-top:0}
+.svc-head{display:grid;gap:12px;align-content:start;position:sticky;top:104px}
+.svc-body{display:grid;gap:24px}
+.svc-body h4{font:600 13px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 8px}
+.ticks{list-style:none;padding:0;display:grid;gap:10px}
+.ticks li{padding-left:24px;position:relative}
+.ticks li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:10px;border-radius:3px;background:var(--pine-soft);box-shadow:inset 0 0 0 1.5px var(--pine)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.jump a{font:600 14px/20px var(--sans);text-decoration:none;padding:8px 14px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink)}
+.jump a:hover{border-color:var(--ink)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:64px;align-items:start}
+.portrait{background:var(--sand);border-radius:var(--r-lg);aspect-ratio:4/5;max-width:100%;display:grid;place-items:center;padding:32px;text-align:center;position:sticky;top:104px}
+.portrait span{font-size:15px;line-height:24px;color:var(--ink-muted)}
+.timeline{list-style:none;padding:0;display:grid}
+.timeline li{display:grid;grid-template-columns:180px 1fr;gap:20px;padding-block:18px;border-top:1px solid var(--line)}
+.timeline .org{font-weight:600}
+.timeline .role{display:block;color:var(--ink-muted);font-size:15px;line-height:24px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.form{display:grid;gap:20px;padding:32px;background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-lg)}
+.field{display:grid;gap:8px}
+.field label{font:600 15px/20px var(--sans)}
+.field input,.field select,.field textarea{min-height:48px;padding:12px 16px;font:400 17px/24px var(--sans);color:var(--ink);background:var(--surface-raised);border:1px solid var(--line-strong);border-radius:var(--r-sm);width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.help{font-size:15px;line-height:24px;color:var(--ink-muted)}
+.field.invalid input{border:2px solid var(--danger)}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.error{font-size:15px;line-height:24px;color:var(--danger);font-weight:600}
+.form-status{font-size:15px;line-height:24px;padding:16px;border-radius:var(--r-md);background:var(--pine-soft);color:var(--ink)}
+.email-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:8px}
+.email{font:500 18px/26px var(--sans);user-select:all;color:var(--pine)}
+.copy{background:none;border:1px solid var(--line-strong);color:var(--ink);border-radius:999px;padding:6px 14px;font:600 14px/20px var(--sans);cursor:pointer}
+
+/* footer */
+.site-footer{border-top:1px solid var(--line);padding-block:56px 40px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr) minmax(0,1fr);gap:40px;align-items:start}
+.lockup{display:flex;align-items:center;gap:14px;color:var(--pine)}
+.lockup svg{width:52px;height:auto}
+.lockup .wordmark{font-size:30px;line-height:32px}
+.lockup .tagline{display:block;margin-top:4px;font:600 10.5px/14px var(--sans);letter-spacing:.115em;text-transform:uppercase;color:var(--ink-muted)}
+.foot-links{list-style:none;padding:0;display:grid;gap:8px}
+.foot-links a{text-decoration:none;font-weight:500}
+.foot-links a:hover{text-decoration:underline}
+.legal{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px;line-height:22px;color:var(--ink-muted)}
+
+.page[hidden]{display:none!important}
+
+@media (max-width:1080px){
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .hero-grid,.split,.proof,.about-grid,.contact-grid,.svc{grid-template-columns:1fr;gap:40px}
+  .svc-head,.portrait{position:static}
+  .portrait{aspect-ratio:16/10}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid > :first-child{grid-column:1/-1}
+  .nav{display:none}
+  .menu-btn{display:inline-flex;align-items:center}
+  .mobile-sheet:not([hidden]){display:block;position:absolute;left:0;right:0;top:100%;background:var(--surface-raised);box-shadow:var(--shadow-float);border-top:1px solid var(--line)}
+  .mobile-sheet ul{list-style:none;padding:16px 32px 24px;display:grid;gap:4px}
+  .mobile-sheet a:not(.btn){display:block;padding:12px 0;font:600 18px/24px var(--sans);text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+  .mobile-sheet .btn{margin-top:16px;width:100%}
+}
+@media (max-width:640px){
+  .wrap{padding-inline:16px}
+  .mobile-sheet ul{padding-inline:16px}
+  .section{padding-block:64px}
+  .hero{padding-block:56px 64px}
+  .display{font-size:40px;line-height:44px}
+  .h1{font-size:34px;line-height:40px}
+  .h2{font-size:26px;line-height:32px}
+  .lede{font-size:18px;line-height:28px}
+  .cards,.steps,.principles{grid-template-columns:1fr}
+  .card,.form{padding:24px}
+  .cta{padding:32px 24px}
+  .facts li,.timeline li{grid-template-columns:1fr;gap:6px}
+  .foot-grid{grid-template-columns:1fr}
+  .header-row{min-height:64px}
+  .wordmark{font-size:22px}
+  .panel-card{padding:20px}
+  .panel-grid{grid-template-columns:36px repeat(5,minmax(0,1fr));gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-row">
+    <a class="brand" href="#home" aria-label="Full Panel, home">
+      <svg viewBox="0 0 216 208" aria-hidden="true"><rect width="216" height="104" rx="20" fill="var(--mark-sand)"/><rect y="112" width="64" height="96" rx="12" fill="var(--mark-ember)"/><rect x="72" y="112" width="144" height="96" rx="20" fill="var(--mark-soft)"/></svg>
+      <span class="wordmark">Full Panel</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav">
+        <li><a href="#services" data-nav="services">Services</a></li>
+        <li><a href="#how" data-nav="how">How it works</a></li>
+        <li><a href="#about" data-nav="about">About</a></li>
+        <li><a class="btn btn-primary" href="#contact">Book a free consult</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+  </div>
+  <div class="mobile-sheet" id="mobile-sheet" hidden>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a class="btn btn-primary" href="#contact">Book a free consult</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HOME ============ -->
+<div class="page" data-page="home">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Practice growth strategy for therapists</p>
+        <h1 class="display">You were trained to do therapy, not marketing.</h1>
+        <p class="lede">Full Panel helps private-practice therapists build the referral relationships, directory profiles and search visibility that keep a caseload full, with marketing that's clinician-informed and fits the ethics you already practice under.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">Book a free consult</a>
+          <a class="btn btn-secondary" href="#how">See how it works</a>
+        </div>
+        <p class="hero-note">Free, no pressure, no pitch deck.</p>
+      </div>
+      <figure class="panel-card" aria-label="Illustration: a week of appointment slots, almost all filled, with one new referral highlighted" style="margin:0">
+        <div class="panel-head"><span>This week</span><span>28 of 30 booked</span></div>
+        <div class="panel-grid" id="panel-grid" aria-hidden="true"></div>
+        <figcaption class="panel-cap">A full panel is built one relationship at a time.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">The gap</p>
+        <h2 class="h2">Nothing in your program covered this, and that isn't a gap in you.</h2>
+        <p class="lede">Counseling programs teach you how to sit with a client. They don't teach you how that client finds you in the first place, and most of the marketing advice out there wasn't written with a clinician in mind.</p>
+      </div>
+      <div class="prose">
+        <ul class="feel-list">
+          <li>Your Psychology Today profile has been live for months, and the inquiries are a trickle, or they're for work you don't do.</li>
+          <li>You know you should be connecting with local doctors, but a cold email to a PCP feels like selling, and you're not sure what you're even allowed to say.</li>
+          <li>Every agency pitch you've seen promises to "10x your practice," which is exactly the kind of language your clients would run from.</li>
+        </ul>
+        <p>Growing a practice is relationship work, and relationship work is something you already know how to do. It just needs a structure, a plan and someone who understands both sides of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2 class="h2">Six ways I can help, starting with an audit.</h2>
+        <p class="lede">Most practices don't need all six. The audit tells us which ones will make a difference for yours, and in what order.</p>
+      </div>
+      <div class="cards" id="home-cards"></div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2">Start with the audit, then take on only what you need.</h2>
+      </div>
+      <ol class="steps">
+        <li class="step"><h3 class="h3">Audit</h3><p>I research how clients find therapists in your market, map where your referrals come from now, and hand you a prioritized roadmap.</p><span><span class="tag">Start here</span></span></li>
+        <li class="step"><h3 class="h3">Implementation</h3><p>You choose the tracks that fit: referral partners, directories, search, ads or social. I do the work with you, not just hand you a checklist.</p></li>
+        <li class="step"><h3 class="h3">Retainer</h3><p>Optional. A monthly rhythm to keep relationships warm, listings current and new channels tested as your practice changes.</p></li>
+      </ol>
+      <p style="margin-top:32px"><a class="link arrow" href="#how">More on how an engagement runs</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap proof">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Why me</p>
+        <h2 class="h2">I've spent my career on the referral side of health care, and now I'm training on the clinical side.</h2>
+        <p class="lede">I'm finishing my M.S.Ed. in Mental Health Counseling at Penn and seeing clients as an intern therapist, so I know the ethics code isn't an afterthought. Before that, building referral relationships between clinicians and health systems was my job.</p>
+        <p><a class="link arrow" href="#about">Read my story</a></p>
+      </div>
+      <div>
+        <ul class="facts">
+          <li><span class="fact-num">300+</span><p>referral sources I served as liaison to, growing referral volume 133% over baseline<span class="src">AccentCare, home health and hospice</span></p></li>
+          <li><span class="fact-num">150+</span><p>referral relationships managed across the continuum of care, including Penn Medicine and Jefferson Health<span class="src">KeystoneCare</span></p></li>
+          <li><span class="fact-num">100+</span><p>value-based provider partnerships, plus a two-way behavioral health referral pathway built with a staff psychologist<span class="src">Patina, integrated primary care for adults 65+</span></p></li>
+        </ul>
+        <p class="fine" style="margin-top:16px">These are results from my own roles in health care before Full Panel, not outcomes for therapy practices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ethics-aligned</p>
+        <h2 class="h2">Marketing that you won't have to explain to your licensing board.</h2>
+        <p class="lede">The rules around testimonials, referrals and advertising are there to protect clients. Every recommendation I make is built to work within them.</p>
+      </div>
+      <ul class="principles">
+        <li><strong>No client testimonials or reviews solicited</strong><span>We build word of mouth in ways the ACA Code and your board allow, without asking current or former clients to vouch for you.</span></li>
+        <li><strong>Nothing given or received for referrals</strong><span>Referral partnerships run on trust and good follow-up, never on gifts, fee splits or kickbacks.</span></li>
+        <li><strong>Copy that names feelings, not stories</strong><span>Your site speaks to what clients are going through without borrowing anyone's story to sell your services.</span></li>
+        <li><strong>Health ad rules handled</strong><span>Google and Meta limit how health services can be targeted and described. Campaigns are built to stay inside those lines.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <div><h2 class="h2">Talk it through with someone who gets it.</h2><p>Free, no pressure, no pitch deck.</p></div>
+        <a class="btn btn-on-pine" href="#contact">Book a free consult</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div class="page" data-page="services" hidden>
+  <section class="hero" style="padding-bottom:48px">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Services</p>
+        <h1 class="h1">Everything a practice needs to be found, trusted and referred to.</h1>
+        <p class="lede">Each service works on its own, but most engagements start with the audit so we spend your time and budget on what will actually move your caseload.</p>
+      </div>
+      <nav class="jump" aria-label="Jump to a service" id="jump"></nav>
+    </div>
+  </section>
+  <section class="section" style="padding-top:48px">
+    <div class="wrap" id="svc-list"></div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <div><h2 class="h2">Not sure where to start? That's what the consult is for.</h2><p>Free, no pressure, no pitch deck.</p></div>
+        <a class="btn btn-on-pine" href="#contact">Book a free consult</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ HOW IT WORKS ============ -->
+<div class="page" data-page="how" hidden>
+  <section class="hero" style="padding-bottom:64px">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">How it works</p>
+        <h1 class="h1">A clear path from a first conversation to a steady referral stream.</h1>
+        <p class="lede">You'll always know what we're working on, why it's first and what it will take from you. There's no long contract and nothing to sign before the audit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Before we begin</p>
+        <h2 class="h2">A free consult to see if it's a fit.</h2>
+        <p class="lede">We'll talk about your practice, who you want to work with and what you've already tried. If I think I can help, I'll tell you what I'd look at first. If I don't, I'll say so and point you somewhere useful.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <h3 class="h3">Practice Growth Audit &amp; Roadmap</h3>
+          <p>I look at your market the way a potential client does, from search results and directories to the doctors and schools who might send people your way. Then I map where your current clients actually come from.</p>
+          <ul class="ticks small" style="margin-top:8px">
+            <li>Market research on how clients find therapists near you</li>
+            <li>A map of your current and missing acquisition channels</li>
+            <li>A branded strategy deck with priorities, in order</li>
+            <li>A walkthrough call to go over it together</li>
+          </ul>
+          <span style="margin-top:8px"><span class="tag">Start here</span></span>
+        </li>
+        <li class="step">
+          <h3 class="h3">Implementation tracks</h3>
+          <p>You pick the tracks from the roadmap you want to take on now. Each one has a defined scope and a clear finish line, so you can add another later without starting over.</p>
+          <ul class="ticks small" style="margin-top:8px">
+            <li>Referral Partner Development</li>
+            <li>Directory &amp; Listings Management</li>
+            <li>Search Visibility: SEO + AI Search</li>
+            <li>Paid Advertising</li>
+            <li>Social Media &amp; Content Strategy</li>
+          </ul>
+        </li>
+        <li class="step">
+          <h3 class="h3">Monthly retainer, if you want one</h3>
+          <p>Referral relationships need tending, and listings drift out of date. A retainer keeps a steady cadence going so the work doesn't fade once the initial push is done.</p>
+          <ul class="ticks small" style="margin-top:8px">
+            <li>Ongoing referral partner outreach and follow-up</li>
+            <li>Listing and profile upkeep</li>
+            <li>A monthly check-in on what's working</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2 class="h2">What therapists usually ask first.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>I'm not comfortable with marketing. Is that a problem?</summary><p>Not at all. A lot of therapists feel that way, and I get it. Most of what I do looks less like advertising and more like the professional relationship-building you'd do anyway, with a plan behind it. We'll never do anything that feels out of line with how you practice.</p></details>
+        <details><summary>Do I need to be on insurance panels?</summary><p>No. I work with private-pay, in-network and mixed practices. Which channels matter most changes depending on how you get paid, and the audit takes that into account.</p></details>
+        <details><summary>Can you guarantee a full caseload?</summary><p>No, and I'd be wary of anyone who does. What I can promise is a clear picture of how clients find therapists in your area, a plan built around it and steady follow-through.</p></details>
+        <details><summary>How long does it take to see results?</summary><p>It depends on the channel. Fixing a directory profile or a Google Business Profile can make a difference fairly quickly, while referral relationships with physicians and other providers usually take a few months of consistent contact to pay off.</p></details>
+        <details><summary>What does it cost?</summary><p>It depends on which services you need and the size of your practice. After our consult, I'll give you a clear quote before any work begins. Paid ad budgets are separate and can start around $50 a month.</p></details>
+        <details><summary>Will you need access to client information?</summary><p>No. I never need client names, records or any protected health information. When we look at where clients come from, we work with counts and sources, not people.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <div><h2 class="h2">Ready to see what your audit would cover?</h2><p>Free, no pressure, no pitch deck.</p></div>
+        <a class="btn btn-on-pine" href="#contact">Book a free consult</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" data-page="about" hidden>
+  <section class="hero" style="padding-bottom:64px">
+    <div class="wrap about-grid">
+      <div class="portrait" role="img" aria-label="Photo of Clay Klaus-Wade, coming soon"><span>Photo of Clay, coming soon</span></div>
+      <div class="prose" style="max-width:680px">
+        <p class="eyebrow">About</p>
+        <h1 class="h1">Hi, I'm Clay.</h1>
+        <p class="lede">I'm a counselor in training at the University of Pennsylvania, and I spent the years before that building referral relationships in health care. Full Panel is where those two paths meet.</p>
+        <p>I see clients as an intern therapist at Sunflower Radiance Counseling in Glenolden, where I work with individuals and relationships from an LGBTQ+- and neurodivergent-affirming lens. I'll finish my M.S.Ed. in Mental Health Counseling in May 2027, and I'm getting ready to open my own practice, Layered Health, in Philadelphia that summer.</p>
+        <p>Before I was in the therapist's chair, my work was getting people to the right care. At Patina, I built a two-way behavioral health referral pathway alongside the company's behavioral health leadership and helped launch its first go-to-market strategy. At AccentCare and KeystoneCare, I built and managed hundreds of referral relationships with physicians and health systems, including Penn Medicine and Jefferson Health. At Health Union, I directed content strategy for online communities of patients and caregivers. Today I also work in sales development at Doppler, where I run outreach and wrote the playbook for it.</p>
+        <p class="quote" style="margin-block:12px">I kept noticing that nothing in my training covered how clients actually find a therapist.</p>
+        <p>My classmates and colleagues are some of the most thoughtful clinicians I know, and many of them are quietly worried about filling their caseloads. The advice they get tends to come from agencies that don't understand the ethics code, or from colleagues who got lucky. I think therapists deserve something better than either, from someone who respects the work and knows the rules because they practice under them too.</p>
+        <p>I'm building Layered Health with the same approach I use with Full Panel clients, so everything I recommend is something I'm willing to do myself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Background</p>
+        <h2 class="h2">Where the experience comes from.</h2>
+      </div>
+      <ul class="timeline">
+        <li><span class="org">Education</span><p>M.S.Ed. in Mental Health Counseling, University of Pennsylvania (expected May 2027)<span class="role">M.A. in Public Policy, Stony Brook University · B.A. in Political Science, SUNY Empire State University</span></p></li>
+        <li><span class="org">Clinical</span><p>Intern Therapist, Sunflower Radiance Counseling<span class="role">Previously Clinical Intern, Kolmac Integrated Behavioral Health (IOP and outpatient groups)</span></p></li>
+        <li><span class="org">Referral development</span><p>KeystoneCare, AccentCare and Patina<span class="role">Referral relationships, provider partnerships and a behavioral health referral pathway in integrated primary care</span></p></li>
+        <li><span class="org">Content and community</span><p>Health Union<span class="role">Content strategy for digital patient and caregiver communities; managed two content teams</span></p></li>
+        <li><span class="org">Sales and outreach</span><p>Doppler<span class="role">Outbound pipeline, account prioritization and a multi-channel outreach playbook</span></p></li>
+        <li><span class="org">Community</span><p>Board of Directors, Mazzoni Center<span class="role">Philadelphia's LGBTQ+ health and wellness center</span></p></li>
+        <li><span class="org">Affiliations</span><p>AASECT, NAADC, NEI and the Philadelphia Society for Psychoanalytic Psychology<span class="role">Marketing Career Development Program, Reforge</span></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta">
+        <div><h2 class="h2">I'd love to hear about your practice.</h2><p>Free, no pressure, no pitch deck.</p></div>
+        <a class="btn btn-on-pine" href="#contact">Book a free consult</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" data-page="contact" hidden>
+  <section class="hero">
+    <div class="wrap contact-grid">
+      <div class="prose">
+        <p class="eyebrow">Book a free consult</p>
+        <h1 class="h1">Let's talk about your practice.</h1>
+        <p class="lede">Tell me a little about where you are, and I'll follow up to find a time that works. The consult is free, and there's no obligation to do anything after it.</p>
+        <div>
+          <h2 class="h3" style="margin-bottom:12px">What we'll cover</h2>
+          <ul class="ticks">
+            <li>Who you want to work with and who's reaching you now</li>
+            <li>Where your current clients come from</li>
+            <li>What you've already tried, and what felt off about it</li>
+            <li>Whether an audit makes sense, and what it would look at first</li>
+          </ul>
+        </div>
+        <div>
+          <p class="help">Prefer email?</p>
+          <div class="email-row"><span class="email" id="email">info@fullpanel.co</span><button class="copy" id="copy" type="button">Copy</button></div>
+        </div>
+      </div>
+      <form class="form" id="consult-form" action="" method="POST" data-endpoint="" novalidate>
+        <!-- Formspree: paste this form's endpoint (https://formspree.io/f/XXXXXXX) into both action and data-endpoint -->
+        <input type="hidden" name="_subject" value="New Full Panel consult request">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <div class="field" id="name-field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required aria-describedby="f-name-err"><span class="error" id="f-name-err" hidden>Please add your name.</span></div>
+        <div class="field" id="email-field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err"><span class="error" id="f-email-err" hidden>Check the email address; it looks incomplete.</span></div>
+        <div class="field"><label for="f-type">Your practice</label>
+          <select id="f-type" name="practice"><option>Solo practice</option><option>Small group practice</option><option>Opening a practice soon</option><option>Something else</option></select></div>
+        <div class="field"><label for="f-where">Where you practice</label><input id="f-where" name="where" placeholder="City and state, or telehealth only"></div>
+        <div class="field"><label for="f-msg">What's on your mind?</label><textarea id="f-msg" name="message"></textarea><span class="help">Please don't include any client information.</span></div>
+        <button class="btn btn-primary" type="submit" id="f-submit">Request a consult</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="lockup" href="#home" style="text-decoration:none" aria-label="Full Panel, home">
+          <svg viewBox="0 0 216 208" aria-hidden="true"><rect width="216" height="104" rx="20" fill="var(--mark-sand)"/><rect y="112" width="64" height="96" rx="12" fill="var(--mark-ember)"/><rect x="72" y="112" width="144" height="96" rx="20" fill="var(--mark-soft)"/></svg>
+          <span><span class="wordmark">Full Panel</span><span class="tagline">Practice growth strategy for therapists</span></span>
+        </a>
+      </div>
+      <ul class="foot-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Book a free consult</a></li>
+      </ul>
+      <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
+    </div>
+    <div class="legal"><span>© 2026 Full Panel</span><span>fullpanel.co</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var services=[
+    {id:"audit",name:"Practice Growth Audit & Roadmap",short:"I research how clients find therapists in your market, map your acquisition channels and deliver a prioritized, branded strategy deck.",
+     intro:"The audit is where every engagement starts. I look at your market the way a prospective client does, then look at your practice the way a referral source would.",
+     does:["Research how clients search for therapists in your area and specialty","Map where your current clients come from and which channels are missing","Review your website, profiles and listings against what's working locally","Deliver a branded strategy deck with priorities ranked by effort and impact"],
+     get:"A roadmap you can act on with me or on your own, and a walkthrough call to go over it.",
+     ethics:null,start:true},
+    {id:"referrals",name:"Referral Partner Development",short:"I build prospect lists of local PCPs and providers, run a structured outreach playbook and set a cadence that keeps those relationships active.",
+     intro:"Physicians, psychiatrists, school counselors and other therapists are often the most reliable source of good-fit clients. Most practices just don't have a system for reaching them.",
+     does:["Build prospect lists of local PCPs, pediatricians, OB-GYNs, psychiatrists and other providers","Run a structured outreach playbook, from first contact to a warm introduction","Create referral materials, like a one-page practice sheet providers actually keep","Set up a follow-up cadence so relationships stay active","Build new employer and EAP partnerships, and reactivate ones that have gone quiet"],
+     get:"A referral network with names, a rhythm for staying in touch and materials that make it easy to refer to you.",
+     ethics:"The ACA Code doesn't allow anything to be given or received in exchange for referrals. Every partnership we build runs on relationships and good follow-up, never on perks."},
+    {id:"directories",name:"Directory & Listings Management",short:"I audit your insurance directories, choose and optimize therapist directory profiles and claim your profiles on health platforms.",
+     intro:"Directories are often the first place a prospective client sees you, and insurance directories are notoriously out of date.",
+     does:["Audit your listings in insurance company directories and flag what's wrong","Choose the therapist directories worth your time, like Psychology Today, Zencare and Inclusive Therapists","Rewrite and optimize your profiles so they sound like you and match what clients search for","Claim and complete your profiles on health platforms like Healthgrades and Zocdoc"],
+     get:"Accurate, consistent listings everywhere you appear, and profiles that bring in the clients you want to see.",
+     ethics:null},
+    {id:"search",name:"Search Visibility: SEO + AI Search",short:"A site audit, local SEO and service-by-location pages, plus visibility in AI answers from ChatGPT, Claude, Perplexity and Google.",
+     intro:"More clients now ask an AI tool for a recommendation before they ever open a directory. Being findable means showing up in both places.",
+     does:["Audit your website for search and usability issues","Set up local SEO: your Google Business Profile, consistent name, address and phone listings, and schema","Build service and location pages, like “anxiety therapy in Media, PA”","Improve how your practice shows up in AI answers from ChatGPT, Claude, Perplexity and Google AI Overviews"],
+     get:"A site search engines and AI tools can understand, and pages that match what people in your area are searching for.",
+     ethics:"Google reviews are a gray area for therapists. The ACA Code doesn't allow soliciting testimonials from current or former clients, so we build visibility without asking clients for reviews."},
+    {id:"ads",name:"Paid Advertising",short:"I choose the right mix of Google, Meta and LinkedIn, allocate small budgets starting around $50 a month and write compliant ad copy.",
+     intro:"Paid ads can work for therapists at a small scale, as long as they're set up carefully and follow the platforms' health rules.",
+     does:["Choose the right mix of Google, Meta and LinkedIn for your practice and goals","Allocate small budgets, starting around $50 a month","Write ad copy that sounds like you and speaks to what clients are feeling","Handle healthcare ad-policy compliance on each platform"],
+     get:"Campaigns sized to your budget, with clear reporting on what they're doing.",
+     ethics:"Google and Meta restrict targeting by health conditions and how health services can be described. Your campaigns are built to stay inside those rules."},
+    {id:"social",name:"Social Media & Content Strategy",short:"A social audit with real numbers, content pillars, brand voice and bio rewrites, post concepts and calls to action that lead to bookings.",
+     intro:"Social media doesn't have to mean dancing on camera. It can be a quiet, steady way for the right people to get a sense of who you are.",
+     does:["Audit your current social presence with real numbers","Define content pillars that fit your specialty and your comfort level","Rewrite your bios and set your brand voice","Develop post concepts and calls to action that lead to bookings"],
+     get:"A sustainable plan for what to post, where and why, in a voice that's recognizably yours.",
+     ethics:"Your content speaks to common experiences without drawing on any client's story, and we plan for how you'll handle comments and messages from people who may be in distress."}
+  ];
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+  var home=document.getElementById("home-cards");
+  home.innerHTML=services.map(function(s,i){
+    return '<article class="card"><div class="card-top"><div class="num" aria-hidden="true">'+(i+1)+'</div>'+(s.start?'<span class="tag">Start here</span>':'')+'</div><h3 class="h3">'+esc(s.name)+'</h3><p>'+esc(s.short)+'</p><div class="foot"><a class="link arrow" href="#services" data-svc="'+s.id+'">More<span class="visually-hidden" style="position:absolute;left:-9999px"> on '+esc(s.name)+'</span></a></div></article>';
+  }).join("");
+  document.getElementById("jump").innerHTML=services.map(function(s){return '<a href="#services" data-svc="'+s.id+'">'+esc(s.name)+'</a>'}).join("");
+  document.getElementById("svc-list").innerHTML=services.map(function(s,i){
+    return '<article class="svc" id="svc-'+s.id+'"><div class="svc-head"><div class="num" aria-hidden="true">'+(i+1)+'</div><h2 class="h2">'+esc(s.name)+'</h2>'+(s.start?'<span><span class="tag">Start here</span></span>':'')+'</div><div class="svc-body"><p class="lede" style="color:var(--ink)">'+esc(s.intro)+'</p><div><h4>What I do</h4><ul class="ticks">'+s.does.map(function(d){return '<li>'+esc(d)+'</li>'}).join("")+'</ul></div><div><h4>What you get</h4><p>'+esc(s.get)+'</p></div>'+(s.ethics?'<aside class="ethics" aria-label="Ethics note"><span class="ethics-label">Ethics</span><p>'+esc(s.ethics)+'</p></aside>':'')+'</div></article>';
+  }).join("");
+
+  // panel illustration
+  var grid=document.getElementById("panel-grid"),days=["Mon","Tue","Wed","Thu","Fri"],times=["9","10","11","1","2","4"];
+  var open={"2-3":1,"4-1":1},fresh="3-4",h='<span></span>'+days.map(function(d){return '<span class="day">'+d+'</span>'}).join(""),k=0;
+  times.forEach(function(t,r){h+='<span class="time">'+t+'</span>';days.forEach(function(d,c){var key=r+"-"+c;var cls=open[key]?"slot open":(key===fresh?"slot new":"slot fill");h+='<span class="'+cls+'" style="--i:'+(k++)+'"></span>';});});
+  grid.innerHTML=h;
+
+  // routing
+  var pages=[].slice.call(document.querySelectorAll(".page")),valid={home:1,services:1,how:1,about:1,contact:1},pendingSvc=null;
+  var titles={home:"Full Panel",services:"Services · Full Panel",how:"How it works · Full Panel",about:"About · Full Panel",contact:"Book a free consult · Full Panel"};
+  function show(){
+    var id=(location.hash||"#home").slice(1);if(!valid[id])id="home";
+    pages.forEach(function(p){p.hidden=p.getAttribute("data-page")!==id});
+    document.querySelectorAll("[data-nav]").forEach(function(a){if(a.getAttribute("data-nav")===id)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+    document.title=titles[id];
+    closeMenu();
+    if(pendingSvc&&id==="services"){var el=document.getElementById("svc-"+pendingSvc);pendingSvc=null;if(el){setTimeout(function(){el.scrollIntoView({block:"start"});window.scrollBy(0,-88)},0);return}}
+    window.scrollTo(0,0);
+  }
+  document.addEventListener("click",function(e){var a=e.target.closest("[data-svc]");if(a){pendingSvc=a.getAttribute("data-svc");if(location.hash==="#services"){e.preventDefault();show()}}});
+  window.addEventListener("hashchange",show);
+
+  // header
+  var header=document.querySelector(".site-header");
+  window.addEventListener("scroll",function(){header.classList.toggle("scrolled",window.scrollY>8)},{passive:true});
+  var mb=document.getElementById("menu-btn"),sheet=document.getElementById("mobile-sheet");
+  function closeMenu(){sheet.hidden=true;mb.setAttribute("aria-expanded","false");mb.textContent="Menu"}
+  mb.addEventListener("click",function(){var o=sheet.hidden;sheet.hidden=!o;mb.setAttribute("aria-expanded",String(o));mb.textContent=o?"Close":"Menu"});
+
+  // copy email
+  var cp=document.getElementById("copy");
+  cp.addEventListener("click",function(){var t=document.getElementById("email").textContent;
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("email"));var s=getSelection();s.removeAllRanges();s.addRange(r);cp.textContent="Selected"}
+    try{navigator.clipboard.writeText(t).then(function(){cp.textContent="Copied"},sel)}catch(e){sel()}
+    setTimeout(function(){cp.textContent="Copy"},2000)});
+
+  // form (Formspree, same setup as layered.health)
+  var form=document.getElementById("consult-form"),status=document.getElementById("form-status"),btn=document.getElementById("f-submit");
+  function say(t){status.hidden=false;status.textContent=t}
+  function check(id,fieldId,errId,bad){var el=document.getElementById(id);document.getElementById(fieldId).classList.toggle("invalid",bad);el.setAttribute("aria-invalid",String(bad));document.getElementById(errId).hidden=!bad;return el}
+  form.addEventListener("submit",function(e){e.preventDefault();
+    var n=document.getElementById("f-name"),em=document.getElementById("f-email");
+    var badN=!n.value.trim(),badE=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim());
+    check("f-name","name-field","f-name-err",badN);check("f-email","email-field","f-email-err",badE);
+    if(badN){n.focus();return}if(badE){em.focus();return}
+    var endpoint=form.getAttribute("data-endpoint");
+    if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co and I'll follow up to find a time.");return}
+    btn.disabled=true;say("Sending\u2026");
+    fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
+      .then(function(r){if(!r.ok)throw new Error();form.reset();say("Thanks, your request is in. I'll be in touch to find a time.")})
+      .catch(function(){say("Something went wrong. Please try again, or email info@fullpanel.co.")})
+      .then(function(){btn.disabled=false});
+  });
+
+  show();
+})();
+</script>
+</body>
+</html>
