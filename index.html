@@ -190,8 +190,8 @@ h1,h2,h3,p,ul,ol{margin:0}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:64px;align-items:start}
-.portrait{background:var(--sand);border-radius:var(--r-lg);aspect-ratio:4/5;max-width:100%;display:grid;place-items:center;padding:32px;text-align:center;position:sticky;top:104px}
-.portrait span{font-size:15px;line-height:24px;color:var(--ink-muted)}
+.portrait{background:var(--sand);border-radius:var(--r-lg);aspect-ratio:4/5;max-width:100%;overflow:hidden;position:sticky;top:104px}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .timeline{list-style:none;padding:0;display:grid}
 .timeline li{display:grid;grid-template-columns:180px 1fr;gap:20px;padding-block:18px;border-top:1px solid var(--line)}
 .timeline .org{font-weight:600}
@@ -233,7 +233,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 @media (max-width:900px){
   .hero-grid,.split,.proof,.about-grid,.contact-grid,.svc{grid-template-columns:1fr;gap:40px}
   .svc-head,.portrait{position:static}
-  .portrait{aspect-ratio:16/10}
+  .portrait{aspect-ratio:1/1;max-width:420px}
   .foot-grid{grid-template-columns:1fr 1fr}
   .foot-grid > :first-child{grid-column:1/-1}
   .nav{display:none}
@@ -519,7 +519,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 <div class="page" data-page="about" hidden>
   <section class="hero" style="padding-bottom:64px">
     <div class="wrap about-grid">
-      <div class="portrait" role="img" aria-label="Photo of Clay Klaus-Wade, coming soon"><span>Photo of Clay, coming soon</span></div>
+      <picture class="portrait"><source srcset="assets/photos/clay-klaus-wade.webp" type="image/webp"><img src="assets/photos/clay-klaus-wade.jpg" alt="Clay Klaus-Wade, smiling, in glasses and a navy T-shirt" width="900" height="957"></picture>
       <div class="prose" style="max-width:680px">
         <p class="eyebrow">About</p>
         <h1 class="h1">Hi, I'm Clay.</h1>
