@@ -23,6 +23,7 @@ npm run build    # writes the finished site to _site/
 - `src/css/styles.css` — all styles; brand colors are CSS variables at the top
 - `src/js/main.js` — sticky header, mobile menu, copy-email button and the contact form
 - `src/assets/` — logo SVGs and the About headshot
+- `src/favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` — browser tab, bookmark and home-screen icons (the mark on pine green)
 - `src/404.njk`, `src/sitemap.njk`, `src/robots.njk` — 404 page, sitemap.xml and robots.txt
 - `lib/og-image.js` — draws each page's share image (see below)
 - `netlify.toml` — Netlify build settings

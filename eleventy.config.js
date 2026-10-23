@@ -8,7 +8,9 @@ const decode = (s) => s.replace(/<[^>]*>/g, "").replace(/&#39;/g, "'").replace(/
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/favicon.svg");
+  for (const file of ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "site.webmanifest"]) {
+    eleventyConfig.addPassthroughCopy(`src/${file}`);
+  }
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
 
