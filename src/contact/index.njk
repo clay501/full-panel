@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: Book a free consult
+---
+  <section class="hero">
+    <div class="wrap contact-grid">
+      <div class="prose">
+        <p class="eyebrow">Book a free consult</p>
+        <h1 class="h1">Let's talk about your practice.</h1>
+        <p class="lede">Tell me a little about where you are, and I'll follow up to find a time that works. The consult is free, and there's no obligation to do anything after it.</p>
+        <div>
+          <h2 class="h3" style="margin-bottom:12px">What we'll cover</h2>
+          <ul class="ticks">
+            <li>Who you want to work with and who's reaching you now</li>
+            <li>Where your current clients come from</li>
+            <li>What you've already tried, and what felt off about it</li>
+            <li>Whether an audit makes sense, and what it would look at first</li>
+          </ul>
+        </div>
+        <div>
+          <p class="help">Prefer email?</p>
+          <div class="email-row"><span class="email" id="email">{{ site.email }}</span><button class="copy" id="copy" type="button">Copy</button></div>
+        </div>
+      </div>
+      <form class="form" id="consult-form" action="{{ site.formEndpoint }}" method="POST" data-endpoint="{{ site.formEndpoint }}" novalidate>
+        <input type="hidden" name="_subject" value="New Full Panel consult request">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <div class="field" id="name-field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required aria-describedby="f-name-err"><span class="error" id="f-name-err" hidden>Please add your name.</span></div>
+        <div class="field" id="email-field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err"><span class="error" id="f-email-err" hidden>Check the email address; it looks incomplete.</span></div>
+        <div class="field"><label for="f-type">Your practice</label>
+          <select id="f-type" name="practice"><option>Solo practice</option><option>Small group practice</option><option>Opening a practice soon</option><option>Something else</option></select></div>
+        <div class="field"><label for="f-where">Where you practice</label><input id="f-where" name="where" placeholder="City and state, or telehealth only"></div>
+        <div class="field"><label for="f-msg">What's on your mind?</label><textarea id="f-msg" name="message"></textarea><span class="help">Please don't include any client information.</span></div>
+        <button class="btn btn-primary" type="submit" id="f-submit">Request a consult</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </section>
+  <section class="section band" id="book">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Pick a time</p>
+        <h2 class="h2">Rather book the consult yourself?</h2>
+        <p class="lede">Choose any open time and it goes straight on my calendar.</p>
+      </div>
+      <a class="btn btn-primary" href="{{ site.bookingUrl }}" target="_blank" rel="noopener">See open times</a>
+    </div>
+  </section>

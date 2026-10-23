@@ -1,0 +1,13 @@
+{
+  "name": "fullpanel-site",
+  "private": true,
+  "type": "module",
+  "description": "fullpanel.co, built with Eleventy",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6"
+  }
+}

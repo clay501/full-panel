@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% if title %}{{ title }} · {% endif %}{{ site.name }}</title>
+<meta name="description" content="{{ description or site.description }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{% if title %}{{ title }} · {% endif %}{{ site.name }}">
+<meta property="og:description" content="{{ description or site.ogDescription }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-row">
+    <a class="brand" href="/" aria-label="Full Panel, home">
+      {% include "partials/mark.njk" %}
+      <span class="wordmark">Full Panel</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav">
+        {%- for item in site.nav %}
+        <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {%- endfor %}
+        <li><a class="btn btn-primary" href="/contact/">Book a free consult</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+  </div>
+  <div class="mobile-sheet" id="mobile-sheet" hidden>
+    <ul>
+      <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
+      {%- for item in site.nav %}
+      <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      {%- endfor %}
+      <li><a class="btn btn-primary" href="/contact/">Book a free consult</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+{{ content | safe }}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="lockup" href="/" style="text-decoration:none" aria-label="Full Panel, home">
+          {% include "partials/mark.njk" %}
+          <span><span class="wordmark">Full Panel</span><span class="tagline">{{ site.tagline }}</span></span>
+        </a>
+      </div>
+      <ul class="foot-links">
+        {%- for item in site.nav %}
+        <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {%- endfor %}
+        <li><a href="/contact/">Book a free consult</a></li>
+      </ul>
+      <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
+    </div>
+    <div class="legal"><span>© {{ "now" | year }} Full Panel</span><span>fullpanel.co</span></div>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>
