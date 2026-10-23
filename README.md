@@ -23,6 +23,10 @@ npm run build    # writes the finished site to _site/
 - `src/assets/` — logo SVGs and the About headshot
 - `src/404.njk`, `src/sitemap.njk`, `src/robots.njk` — 404 page, sitemap.xml and robots.txt
 
+## Page titles and descriptions
+
+Each page sets `title` and `description` in its front matter (the home page uses `fullTitle` for its whole title). The build fails if a page doesn't have exactly one H1, or if two pages share a title or description, so a new page can't go live without its own.
+
 Old links like `fullpanel.co/#about` from the single-page version redirect to the matching page.
 
 ## Deploy
