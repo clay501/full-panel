@@ -1,0 +1,15 @@
+{
+  "name": "Full Panel",
+  "url": "https://fullpanel.co",
+  "tagline": "Practice growth strategy for therapists",
+  "description": "Practice growth strategy for therapists: referral relationships, directories, search, ads and social, built to fit the ethics you practice under.",
+  "ogDescription": "Practice growth strategy for therapists.",
+  "email": "info@fullpanel.co",
+  "formEndpoint": "https://formspree.io/f/xrpewkwj",
+  "bookingUrl": "https://calendar.proton.me/bookings#rieTZkIwYjI50-xCP7rkngn9XPO14nn6ZuWEq7M30zE=",
+  "nav": [
+    { "title": "Services", "url": "/services/" },
+    { "title": "How it works", "url": "/how-it-works/" },
+    { "title": "About", "url": "/about/" }
+  ]
+}

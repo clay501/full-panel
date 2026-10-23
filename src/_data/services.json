@@ -1,0 +1,88 @@
+[
+  {
+    "id": "audit",
+    "name": "Practice Growth Audit & Roadmap",
+    "short": "I research how clients find therapists in your market, map your acquisition channels and deliver a prioritized, branded strategy deck.",
+    "intro": "The audit is where every engagement starts. I look at your market the way a prospective client does, then look at your practice the way a referral source would.",
+    "does": [
+      "Research how clients search for therapists in your area and specialty",
+      "Map where your current clients come from and which channels are missing",
+      "Review your website, profiles and listings against what's working locally",
+      "Deliver a branded strategy deck with priorities ranked by effort and impact"
+    ],
+    "get": "A roadmap you can act on with me or on your own, and a walkthrough call to go over it.",
+    "ethics": null,
+    "start": true
+  },
+  {
+    "id": "referrals",
+    "name": "Referral Partner Development",
+    "short": "I build prospect lists of local PCPs and providers, run a structured outreach playbook and set a cadence that keeps those relationships active.",
+    "intro": "Physicians, psychiatrists, school counselors and other therapists are often the most reliable source of good-fit clients. Most practices just don't have a system for reaching them.",
+    "does": [
+      "Build prospect lists of local PCPs, pediatricians, OB-GYNs, psychiatrists and other providers",
+      "Run a structured outreach playbook, from first contact to a warm introduction",
+      "Create referral materials, like a one-page practice sheet providers actually keep",
+      "Set up a follow-up cadence so relationships stay active",
+      "Build new employer and EAP partnerships, and reactivate ones that have gone quiet"
+    ],
+    "get": "A referral network with names, a rhythm for staying in touch and materials that make it easy to refer to you.",
+    "ethics": "The ACA Code doesn't allow anything to be given or received in exchange for referrals. Every partnership we build runs on relationships and good follow-up, never on perks."
+  },
+  {
+    "id": "directories",
+    "name": "Directory & Listings Management",
+    "short": "I audit your insurance directories, choose and optimize therapist directory profiles and claim your profiles on health platforms.",
+    "intro": "Directories are often the first place a prospective client sees you, and insurance directories are notoriously out of date.",
+    "does": [
+      "Audit your listings in insurance company directories and flag what's wrong",
+      "Choose the therapist directories worth your time, like Psychology Today, Zencare and Inclusive Therapists",
+      "Rewrite and optimize your profiles so they sound like you and match what clients search for",
+      "Claim and complete your profiles on health platforms like Healthgrades and Zocdoc"
+    ],
+    "get": "Accurate, consistent listings everywhere you appear, and profiles that bring in the clients you want to see.",
+    "ethics": null
+  },
+  {
+    "id": "search",
+    "name": "Search Visibility: SEO + AI Search",
+    "short": "A site audit, local SEO and service-by-location pages, plus visibility in AI answers from ChatGPT, Claude, Perplexity and Google.",
+    "intro": "More clients now ask an AI tool for a recommendation before they ever open a directory. Being findable means showing up in both places.",
+    "does": [
+      "Audit your website for search and usability issues",
+      "Set up local SEO: your Google Business Profile, consistent name, address and phone listings, and schema",
+      "Build service and location pages, like “anxiety therapy in Media, PA”",
+      "Improve how your practice shows up in AI answers from ChatGPT, Claude, Perplexity and Google AI Overviews"
+    ],
+    "get": "A site search engines and AI tools can understand, and pages that match what people in your area are searching for.",
+    "ethics": "Google reviews are a gray area for therapists. The ACA Code doesn't allow soliciting testimonials from current or former clients, so we build visibility without asking clients for reviews."
+  },
+  {
+    "id": "ads",
+    "name": "Paid Advertising",
+    "short": "I choose the right mix of Google, Meta and LinkedIn, allocate small budgets starting around $50 a month and write compliant ad copy.",
+    "intro": "Paid ads can work for therapists at a small scale, as long as they're set up carefully and follow the platforms' health rules.",
+    "does": [
+      "Choose the right mix of Google, Meta and LinkedIn for your practice and goals",
+      "Allocate small budgets, starting around $50 a month",
+      "Write ad copy that sounds like you and speaks to what clients are feeling",
+      "Handle healthcare ad-policy compliance on each platform"
+    ],
+    "get": "Campaigns sized to your budget, with clear reporting on what they're doing.",
+    "ethics": "Google and Meta restrict targeting by health conditions and how health services can be described. Your campaigns are built to stay inside those rules."
+  },
+  {
+    "id": "social",
+    "name": "Social Media & Content Strategy",
+    "short": "A social audit with real numbers, content pillars, brand voice and bio rewrites, post concepts and calls to action that lead to bookings.",
+    "intro": "Social media doesn't have to mean dancing on camera. It can be a quiet, steady way for the right people to get a sense of who you are.",
+    "does": [
+      "Audit your current social presence with real numbers",
+      "Define content pillars that fit your specialty and your comfort level",
+      "Rewrite your bios and set your brand voice",
+      "Develop post concepts and calls to action that lead to bookings"
+    ],
+    "get": "A sustainable plan for what to post, where and why, in a voice that's recognizably yours.",
+    "ethics": "Your content speaks to common experiences without drawing on any client's story, and we plan for how you'll handle comments and messages from people who may be in distress."
+  }
+]

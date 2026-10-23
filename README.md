@@ -1,21 +1,36 @@
 # fullpanel.co
 
-Static site for Full Panel. No build step: `index.html` is the whole site (Home, Services, How it works, About and Contact are views switched by `#home`, `#services`, `#how`, `#about`, `#contact`).
+Static site for Full Panel, built with [Eleventy](https://www.11ty.dev/). Each section is a real page: `/`, `/services/`, `/how-it-works/`, `/about/` and `/contact/`.
 
-## Deploy (Cloudflare Pages, Netlify or Vercel)
+## Work on it
 
-1. Push this folder to a GitHub repo, with these files at the repo root.
-2. Connect the repo in your host. Framework preset: none. Build command: leave blank. Output directory: `/` (root).
-3. Add the custom domain `fullpanel.co` in the host, then point the Porkbun DNS records where the host tells you.
+```sh
+npm install
+npm start        # local preview at http://localhost:8080, reloads as you edit
+npm run build    # writes the finished site to _site/
+```
 
-## Before launch
+## Where things live
 
-- **Contact form (Formspree, same as layered.health).** In Formspree, create a new form for Full Panel with info@fullpanel.co as its email. Copy its endpoint (`https://formspree.io/f/XXXXXXX`) and paste it into both `action=""` and `data-endpoint=""` on the `consult-form` element in `index.html`. Until then, the form asks visitors to email info@fullpanel.co. In Formspree's settings, add fullpanel.co as an allowed domain.
-- Fonts load from Google Fonts (Newsreader and Instrument Sans).
+- `src/index.njk`, `src/services/`, `src/how-it-works/`, `src/about/`, `src/contact/` — the pages
+- `src/_includes/layouts/base.njk` — the shared head, header, footer and nav
+- `src/_includes/partials/` — the logo mark and the "Book a free consult" banner at the bottom of each page
+- `src/_data/site.json` — site name, email, nav, Formspree endpoint and the Proton booking link
+- `src/_data/services.json` — the six services; the home page cards, the Services page and its jump links all come from here
+- `src/_data/panel.json` — the week-of-slots illustration on the home page
+- `src/css/styles.css` — all styles; brand colors are CSS variables at the top
+- `src/js/main.js` — sticky header, mobile menu, copy-email button and the contact form
+- `src/assets/` — logo SVGs and the About headshot
+- `src/404.njk`, `src/sitemap.njk`, `src/robots.njk` — 404 page, sitemap.xml and robots.txt
 
-## Files
+Old links like `fullpanel.co/#about` from the single-page version redirect to the matching page.
 
-- `index.html` — the site
-- `favicon.svg` — the mark
-- `assets/logo/` — mark, wordmark and lockup SVGs, light and dark
-- `assets/photos/` — About page headshot (JPEG and WebP)
+## Deploy
+
+Porkbun static hosting serves a GitHub branch as-is and doesn't run a build. So every push to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes `_site/` to the `site` branch. In Porkbun, GitHub Connect for fullpanel.co points at the `site` branch.
+
+Don't edit the `site` branch by hand; it's replaced on every deploy.
+
+## Contact form
+
+Formspree, same setup as layered.health. The endpoint is `formEndpoint` in `src/_data/site.json`, and fullpanel.co is on the form's allowed domains in Formspree.

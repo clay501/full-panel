@@ -1,0 +1,114 @@
+---
+layout: layouts/base.njk
+ctaHeading: "Talk it through with someone who gets it."
+ctaFlush: true
+---
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Practice growth strategy for therapists</p>
+        <h1 class="display">You were trained to do therapy, not marketing.</h1>
+        <p class="lede">Full Panel helps private-practice therapists build the referral relationships, directory profiles and search visibility that keep a caseload full, with marketing that's clinician-informed and fits the ethics you already practice under.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/contact/">Book a free consult</a>
+          <a class="btn btn-secondary" href="/how-it-works/">See how it works</a>
+        </div>
+        <p class="hero-note">Free, no pressure, no pitch deck.</p>
+      </div>
+      <figure class="panel-card" aria-label="Illustration: a week of appointment slots, almost all filled, with one new referral highlighted" style="margin:0">
+        <div class="panel-head"><span>This week</span><span>28 of 30 booked</span></div>
+        <div class="panel-grid" aria-hidden="true">
+          <span></span>{% for d in panel.days %}<span class="day">{{ d }}</span>{% endfor %}
+          {%- for t in panel.times %}{% set r = loop.index0 %}
+          <span class="time">{{ t }}</span>{% for d in panel.days %}{% set key = r ~ "-" ~ loop.index0 %}<span class="slot {% if key in panel.open %}open{% elif key == panel.fresh %}new{% else %}fill{% endif %}" style="--i:{{ r * panel.days.length + loop.index0 }}"></span>{% endfor %}
+          {%- endfor %}
+        </div>
+        <figcaption class="panel-cap">A full panel is built one relationship at a time.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">The gap</p>
+        <h2 class="h2">Nothing in your program covered this, and that isn't a gap in you.</h2>
+        <p class="lede">Counseling programs teach you how to sit with a client. They don't teach you how that client finds you in the first place, and most of the marketing advice out there wasn't written with a clinician in mind.</p>
+      </div>
+      <div class="prose">
+        <ul class="feel-list">
+          <li>Your Psychology Today profile has been live for months, and the inquiries are a trickle, or they're for work you don't do.</li>
+          <li>You know you should be connecting with local doctors, but a cold email to a PCP feels like selling, and you're not sure what you're even allowed to say.</li>
+          <li>Every agency pitch you've seen promises to "10x your practice," which is exactly the kind of language your clients would run from.</li>
+        </ul>
+        <p>Growing a practice is relationship work, and relationship work is something you already know how to do. It just needs a structure, a plan and someone who understands both sides of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2 class="h2">Six ways I can help, starting with an audit.</h2>
+        <p class="lede">Most practices don't need all six. The audit tells us which ones will make a difference for yours, and in what order.</p>
+      </div>
+      <div class="cards">
+        {%- for s in services %}
+        <article class="card"><div class="card-top"><div class="num" aria-hidden="true">{{ loop.index }}</div>{% if s.start %}<span class="tag">Start here</span>{% endif %}</div><h3 class="h3">{{ s.name }}</h3><p>{{ s.short }}</p><div class="foot"><a class="link arrow" href="/services/#{{ s.id }}">More<span class="visually-hidden"> on {{ s.name }}</span></a></div></article>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2">Start with the audit, then take on only what you need.</h2>
+      </div>
+      <ol class="steps">
+        <li class="step"><h3 class="h3">Audit</h3><p>I research how clients find therapists in your market, map where your referrals come from now, and hand you a prioritized roadmap.</p><span><span class="tag">Start here</span></span></li>
+        <li class="step"><h3 class="h3">Implementation</h3><p>You choose the tracks that fit: referral partners, directories, search, ads or social. I do the work with you, not just hand you a checklist.</p></li>
+        <li class="step"><h3 class="h3">Retainer</h3><p>Optional. A monthly rhythm to keep relationships warm, listings current and new channels tested as your practice changes.</p></li>
+      </ol>
+      <p style="margin-top:32px"><a class="link arrow" href="/how-it-works/">More on how an engagement runs</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap proof">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Why me</p>
+        <h2 class="h2">I've spent my career on the referral side of health care, and now I'm training on the clinical side.</h2>
+        <p class="lede">I'm finishing my M.S.Ed. in Mental Health Counseling at Penn and seeing clients as an intern therapist, so I know the ethics code isn't an afterthought. Before that, building referral relationships between clinicians and health systems was my job.</p>
+        <p><a class="link arrow" href="/about/">Read my story</a></p>
+      </div>
+      <div>
+        <ul class="facts">
+          <li><span class="fact-num">300+</span><p>referral sources I served as liaison to, growing referral volume 133% over baseline<span class="src">AccentCare, home health and hospice</span></p></li>
+          <li><span class="fact-num">150+</span><p>referral relationships managed across the continuum of care, including Penn Medicine and Jefferson Health<span class="src">KeystoneCare</span></p></li>
+          <li><span class="fact-num">100+</span><p>value-based provider partnerships, plus a two-way behavioral health referral pathway built with a staff psychologist<span class="src">Patina, integrated primary care for adults 65+</span></p></li>
+        </ul>
+        <p class="fine" style="margin-top:16px">These are results from my own roles in health care before Full Panel, not outcomes for therapy practices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ethics-aligned</p>
+        <h2 class="h2">Marketing that you won't have to explain to your licensing board.</h2>
+        <p class="lede">The rules around testimonials, referrals and advertising are there to protect clients. Every recommendation I make is built to work within them.</p>
+      </div>
+      <ul class="principles">
+        <li><strong>No client testimonials or reviews solicited</strong><span>We build word of mouth in ways the ACA Code and your board allow, without asking current or former clients to vouch for you.</span></li>
+        <li><strong>Nothing given or received for referrals</strong><span>Referral partnerships run on trust and good follow-up, never on gifts, fee splits or kickbacks.</span></li>
+        <li><strong>Copy that names feelings, not stories</strong><span>Your site speaks to what clients are going through without borrowing anyone's story to sell your services.</span></li>
+        <li><strong>Health ad rules handled</strong><span>Google and Meta limit how health services can be targeted and described. Campaigns are built to stay inside those lines.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {% include "partials/cta.njk" %}
