@@ -9,7 +9,9 @@
 {%- if noindex %}
 <meta name="robots" content="noindex">
 {%- endif %}
+{%- if not noindex %}
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{%- endif %}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.name }}">
@@ -20,6 +22,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
 <link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">
+{{ schema | jsonLd(schemaNodes) | safe }}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
