@@ -9,6 +9,10 @@
   var mb=document.getElementById("menu-btn"),sheet=document.getElementById("mobile-sheet");
   mb.addEventListener("click",function(){var o=sheet.hidden;sheet.hidden=!o;mb.setAttribute("aria-expanded",String(o));mb.textContent=o?"Close":"Menu"});
 
+  // analytics events (no-ops until GA4 is set up in site.json)
+  function track(name,params){if(window.gtag)gtag("event",name,params)}
+  document.addEventListener("click",function(e){var a=e.target.closest('a[href^="https://calendar.proton.me/bookings"]');if(a)track("booking_click",{link_url:a.href})});
+
   // copy email
   var cp=document.getElementById("copy");
   if(cp)cp.addEventListener("click",function(){var t=document.getElementById("email").textContent;
@@ -31,7 +35,7 @@
     if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co and I'll follow up to find a time.");return}
     btn.disabled=true;say("Sending…");
     fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
-      .then(function(r){if(!r.ok)throw new Error();form.reset();say("Thanks, your request is in. I'll be in touch to find a time.")})
+      .then(function(r){if(!r.ok)throw new Error();form.reset();track("generate_lead",{form_id:"consult-form"});say("Thanks, your request is in. I'll be in touch to find a time.")})
       .catch(function(){say("Something went wrong. Please try again, or email info@fullpanel.co.")})
       .then(function(){btn.disabled=false});
   });

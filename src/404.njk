@@ -5,17 +5,24 @@ description: "That page isn't here. It may have moved when the site was rebuilt.
 noindex: true
 permalink: /404.html
 eleventyExcludeFromCollections: true
+panelCaption: "Everything else is right where it should be."
 ---
   <section class="hero">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:0">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
         <p class="eyebrow">Page not found</p>
         <h1 class="h1">That page isn't here.</h1>
         <p class="lede">It may have moved when the site was rebuilt. Everything is still a click away.</p>
-        <div class="actions" style="margin-top:12px">
-          <a class="btn btn-primary" href="/">Go to the home page</a>
-          <a class="btn btn-secondary" href="/contact/">Book a free consult</a>
+        <ul class="foot-links">
+          <li><a class="link arrow" href="/">Home</a></li>
+          {%- for item in site.nav %}
+          <li><a class="link arrow" href="{{ item.url }}">{{ item.title }}</a></li>
+          {%- endfor %}
+        </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="/contact/">Book a free consult</a>
         </div>
       </div>
+      {% include "partials/panel.njk" %}
     </div>
   </section>
