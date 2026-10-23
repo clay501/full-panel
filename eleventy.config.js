@@ -1,3 +1,11 @@
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { renderOgImage } from "./lib/og-image.js";
+
+// "/" -> "home", "/services/" -> "services", "/404.html" -> "404"
+const ogSlug = (url) => url.replace(/^\/|\/$|\.html$/g, "").replace(/\//g, "-") || "home";
+const decode = (s) => s.replace(/<[^>]*>/g, "").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").trim();
+
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
@@ -10,6 +18,7 @@ export default function (eleventyConfig) {
     const graph = [schema.organization, ...keys.map((key) => schema[key])].flat();
     return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 2).replace(/</g, "\\u003c");
   });
+  eleventyConfig.addFilter("ogSlug", ogSlug);
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   // Every page needs one H1, a title and a meta description, and no two
@@ -32,6 +41,22 @@ export default function (eleventyConfig) {
       }
     }
     if (problems.length) throw new Error("Page metadata check failed:\n" + problems.join("\n"));
+  });
+
+  // A share image for every page, from its eyebrow and H1, at /og/<slug>.png
+  eleventyConfig.on("eleventy.after", async ({ dir, results }) => {
+    const outDir = path.join(dir.output, "og");
+    await mkdir(outDir, { recursive: true });
+    await Promise.all(
+      results
+        .filter(({ outputPath }) => outputPath?.endsWith(".html"))
+        .map(async ({ url, content }) => {
+          const title = decode(content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]);
+          const eyebrow = content.match(/<p class="eyebrow">([\s\S]*?)<\/p>/);
+          const png = await renderOgImage({ title, eyebrow: eyebrow && decode(eyebrow[1]) });
+          await writeFile(path.join(outDir, `${ogSlug(url)}.png`), png);
+        })
+    );
   });
 
   return {

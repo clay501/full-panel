@@ -1,0 +1,8 @@
+# Netlify builds the site from main and serves _site/. It serves 404.html
+# for any missing page.
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"

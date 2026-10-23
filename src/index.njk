@@ -17,16 +17,7 @@ ctaFlush: true
         </div>
         <p class="hero-note">Free, no pressure, no pitch deck.</p>
       </div>
-      <figure class="panel-card" aria-label="Illustration: a week of appointment slots, almost all filled, with one new referral highlighted" style="margin:0">
-        <div class="panel-head"><span>This week</span><span>28 of 30 booked</span></div>
-        <div class="panel-grid" aria-hidden="true">
-          <span></span>{% for d in panel.days %}<span class="day">{{ d }}</span>{% endfor %}
-          {%- for t in panel.times %}{% set r = loop.index0 %}
-          <span class="time">{{ t }}</span>{% for d in panel.days %}{% set key = r ~ "-" ~ loop.index0 %}<span class="slot {% if key in panel.open %}open{% elif key == panel.fresh %}new{% else %}fill{% endif %}" style="--i:{{ r * panel.days.length + loop.index0 }}"></span>{% endfor %}
-          {%- endfor %}
-        </div>
-        <figcaption class="panel-cap">A full panel is built one relationship at a time.</figcaption>
-      </figure>
+      {% include "partials/panel.njk" %}
     </div>
   </section>
 

@@ -24,10 +24,29 @@ npm run build    # writes the finished site to _site/
 - `src/js/main.js` — sticky header, mobile menu, copy-email button and the contact form
 - `src/assets/` — logo SVGs and the About headshot
 - `src/404.njk`, `src/sitemap.njk`, `src/robots.njk` — 404 page, sitemap.xml and robots.txt
+- `lib/og-image.js` — draws each page's share image (see below)
+- `netlify.toml` — Netlify build settings
 
 ## Page titles and descriptions
 
 Each page sets `title` and `description` in its front matter (the home page uses `fullTitle` for its whole title). The build fails if a page doesn't have exactly one H1, or if two pages share a title or description, so a new page can't go live without its own.
+
+## Share images
+
+Every page gets a 1200×630 share image at `/og/<page>.png`, drawn at build time from the page's eyebrow and H1 in the site's fonts and colors. Change a headline and its image changes with it. The fonts come from the `@fontsource` packages.
+
+## Analytics
+
+Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends two events:
+
+- `generate_lead` when the consult form sends successfully (no form contents are sent)
+- `booking_click` when someone opens the Proton booking page
+
+Mark `generate_lead` as a key event in GA4 (Admin → Events) to count it as a conversion.
+
+## Search Console and Bing
+
+Verify fullpanel.co in Google Search Console as a Domain property (a DNS TXT record in Porkbun), then import it into Bing Webmaster Tools from Search Console. If you'd rather verify with a meta tag, put the codes in `googleSiteVerification` and `bingSiteVerification` in `src/_data/site.json`. Submit `https://fullpanel.co/sitemap.xml` in both.
 
 ## Structured data
 
@@ -37,9 +56,9 @@ Old links like `fullpanel.co/#about` from the single-page version redirect to th
 
 ## Deploy
 
-Porkbun static hosting serves a GitHub branch as-is and doesn't run a build. So every push to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes `_site/` to the `site` branch. In Porkbun, GitHub Connect for fullpanel.co points at the `site` branch.
+Netlify builds the site from `main` (`npm run build`) and serves `_site/`, using `netlify.toml`. It serves `404.html` for any missing page.
 
-Don't edit the `site` branch by hand; it's replaced on every deploy.
+Until DNS points at Netlify, Porkbun static hosting still serves the site: `.github/workflows/deploy.yml` builds on every push to `main` and publishes `_site/` to the `site` branch, which Porkbun serves as-is. Once fullpanel.co is on Netlify, that workflow and the `site` branch can go.
 
 ## Contact form
 
