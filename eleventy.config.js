@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { renderOgImage } from "./lib/og-image.js";
@@ -21,6 +23,12 @@ export default function (eleventyConfig) {
     return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 2).replace(/</g, "\\u003c");
   });
   eleventyConfig.addFilter("ogSlug", ogSlug);
+  // "/js/main.js" -> "/js/main.js?v=<hash of the file>", so browsers fetch
+  // a script or stylesheet again whenever it changes instead of reusing an
+  // old cached copy
+  eleventyConfig.addFilter("bust", (url) =>
+    `${url}?v=${createHash("md5").update(readFileSync(`src${url}`)).digest("hex").slice(0, 10)}`
+  );
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   // Every page needs one H1, a title and a meta description, and no two
