@@ -12,7 +12,11 @@
 {%- if not noindex %}
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 {%- endif %}
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#16433e">
 {%- if site.googleSiteVerification %}
 <meta name="google-site-verification" content="{{ site.googleSiteVerification }}">
 {%- endif %}
