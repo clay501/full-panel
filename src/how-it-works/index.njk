@@ -1,5 +1,6 @@
 ---
 layout: layouts/base.njk
+schemaNodes: [faq]
 title: "How it works: audit, implementation and retainer"
 description: "A clear path from a free consult to a steady referral stream. Start with a practice growth audit, then take on only what you need. No long contract."
 ctaHeading: "Ready to see what your audit would cover?"
@@ -65,12 +66,9 @@ ctaFlush: true
         <h2 class="h2">What therapists usually ask first.</h2>
       </div>
       <div class="faq">
-        <details><summary>I'm not comfortable with marketing. Is that a problem?</summary><p>Not at all. A lot of therapists feel that way, and I get it. Most of what I do looks less like advertising and more like the professional relationship-building you'd do anyway, with a plan behind it. We'll never do anything that feels out of line with how you practice.</p></details>
-        <details><summary>Do I need to be on insurance panels?</summary><p>No. I work with private-pay, in-network and mixed practices. Which channels matter most changes depending on how you get paid, and the audit takes that into account.</p></details>
-        <details><summary>Can you guarantee a full caseload?</summary><p>No, and I'd be wary of anyone who does. What I can promise is a clear picture of how clients find therapists in your area, a plan built around it and steady follow-through.</p></details>
-        <details><summary>How long does it take to see results?</summary><p>It depends on the channel. Fixing a directory profile or a Google Business Profile can make a difference fairly quickly, while referral relationships with physicians and other providers usually take a few months of consistent contact to pay off.</p></details>
-        <details><summary>What does it cost?</summary><p>It depends on which services you need and the size of your practice. After our consult, I'll give you a clear quote before any work begins. Paid ad budgets are separate and can start around $50 a month.</p></details>
-        <details><summary>Will you need access to client information?</summary><p>No. I never need client names, records or any protected health information. When we look at where clients come from, we work with counts and sources, not people.</p></details>
+        {%- for item in faq %}
+        <details><summary>{{ item.question }}</summary><p>{{ item.answer }}</p></details>
+        {%- endfor %}
       </div>
     </div>
   </section>

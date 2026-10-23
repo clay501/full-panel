@@ -4,6 +4,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
 
+  // Pages list the schema nodes they need in `schemaNodes` front matter; the
+  // Organization is on every page.
+  eleventyConfig.addFilter("jsonLd", (schema, keys = []) => {
+    const graph = [schema.organization, ...keys.map((key) => schema[key])].flat();
+    return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 2).replace(/</g, "\\u003c");
+  });
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   // Every page needs one H1, a title and a meta description, and no two
