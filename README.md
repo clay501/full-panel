@@ -56,9 +56,7 @@ Old links like `fullpanel.co/#about` from the single-page version redirect to th
 
 ## Deploy
 
-Netlify builds the site from `main` (`npm run build`) and serves `_site/`, using `netlify.toml`. It serves `404.html` for any missing page.
-
-Until DNS points at Netlify, Porkbun static hosting still serves the site: `.github/workflows/deploy.yml` builds on every push to `main` and publishes `_site/` to the `site` branch, which Porkbun serves as-is. Once fullpanel.co is on Netlify, that workflow and the `site` branch can go.
+Netlify builds the site from `main` (`npm run build`) and serves `_site/`, using `netlify.toml`. Every push to `main` goes live, and every pull request gets a deploy preview link first. Netlify serves `404.html` for any missing page. DNS stays at Porkbun: `fullpanel.co` has an A record to Netlify and `www` is a CNAME to `enchanting-druid-d1cdee.netlify.app`.
 
 ## Contact form
 
