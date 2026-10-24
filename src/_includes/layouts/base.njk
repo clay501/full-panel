@@ -82,29 +82,27 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-grid">
-      <div>
+      <div class="foot-brand">
         <a class="lockup" href="/" style="text-decoration:none" aria-label="Full Panel, home">
           {% include "partials/mark.njk" %}
           <span><span class="wordmark">Full Panel</span><span class="tagline">{{ site.tagline }}</span></span>
         </a>
+        <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
       </div>
       <ul class="foot-links">
-        {%- for item in site.nav %}
-        {%- if item.url == "/blog/" %}
-        <li class="foot-group"><a href="/blog/">{{ item.title }}</a>
-          <ul>
-            {%- for g in collections.guide | byOrder %}
-            <li><a href="{{ g.url }}">{{ g.data.footerTitle or g.data.title }}</a></li>
-            {%- endfor %}
-          </ul>
-        </li>
-        {%- else %}
+        {%- for item in site.nav %}{% if item.url != "/blog/" %}
         <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-        {%- endif %}
-        {%- endfor %}
+        {%- endif %}{% endfor %}
         <li><a href="/contact/">Book a free consult</a></li>
       </ul>
-      <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
+      <div class="foot-links foot-group">
+        <a href="/blog/">Guides</a>
+        <ul>
+          {%- for g in collections.guide | byOrder %}
+          <li><a href="{{ g.url }}">{{ g.data.footerTitle or g.data.title }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
     </div>
     <div class="legal"><span>© {{ "now" | year }} Full Panel</span><span>fullpanel.co</span></div>
   </div>
