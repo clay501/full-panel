@@ -15,6 +15,7 @@ export default function (eleventyConfig) {
   }
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/fonts");
 
   // Pages list the schema nodes they need in `schemaNodes` front matter; the
   // Organization is on every page.

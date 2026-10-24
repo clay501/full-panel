@@ -1,3 +1,7 @@
+/* Self-hosted, subset to Latin-1 plus punctuation. Rename the file (-v2) if you replace one, since /fonts/ is cached for a year. */
+@font-face{font-family:"Newsreader";src:url(/fonts/newsreader-roman-v1.woff2) format("woff2");font-weight:400 500;font-style:normal;font-display:swap}
+@font-face{font-family:"Newsreader";src:url(/fonts/newsreader-italic-v1.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-v1.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
 :root{
   --paper:#f6f3ec; --paper-deep:#ece6da; --surface-raised:#fdfcf9;
   --ink:#1b2422; --ink-muted:#545e5a; --line:#d9d2c4; --line-strong:#858c87;
