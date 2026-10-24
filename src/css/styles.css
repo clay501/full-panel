@@ -112,8 +112,8 @@ h1,h2,h3,p,ul,ol{margin:0}
 /* problem */
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
 .feel-list{list-style:none;padding:0;display:grid;gap:0}
-.feel-list li{padding-block:20px;border-top:1px solid var(--pine-soft)}
-.feel-list li:last-child{border-bottom:1px solid var(--pine-soft)}
+.feel-list li{padding-block:20px;border-top:1px solid var(--pine)}
+.feel-list li:last-child{border-bottom:1px solid var(--pine)}
 
 /* cards */
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -130,21 +130,22 @@ h1,h2,h3,p,ul,ol{margin:0}
 .step{padding-top:24px;border-top:1px solid var(--line-strong);counter-increment:step;display:grid;gap:8px;align-content:start}
 .step::before{content:counter(step,decimal-leading-zero);font:400 32px/1 var(--serif);color:var(--ember);margin-bottom:8px}
 .step p{color:var(--ink-muted)}
+.steps-pine .step{border-top-color:var(--pine)}
 
 /* ethics */
 .ethics{display:flex;gap:16px;align-items:flex-start;padding:16px 24px;background:var(--pine-soft);border-radius:var(--r-md);max-width:var(--measure)}
 .ethics-label{flex:none;font:600 13px/24px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .ethics p{font-size:15px;line-height:24px;color:var(--ink)}
 .principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;list-style:none;padding:0}
-.principles li{display:grid;gap:4px;padding-top:20px;border-top:1px solid var(--pine-soft)}
+.principles li{display:grid;gap:4px;padding-top:20px;border-top:1px solid var(--pine)}
 .principles strong{font-weight:600}
 .principles span{color:var(--ink-muted)}
 
 /* proof */
 .proof{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
 .facts{display:grid;gap:0;list-style:none;padding:0}
-.facts li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--pine-soft);align-items:baseline}
-.facts li:last-child{border-bottom:1px solid var(--pine-soft)}
+.facts li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--pine);align-items:baseline}
+.facts li:last-child{border-bottom:1px solid var(--pine)}
 .fact-num{font:400 40px/1 var(--serif);color:var(--pine);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.01em}
 .facts p{color:var(--ink)}
 .facts .src{display:block;color:var(--ink-muted);font-size:15px;line-height:24px}
