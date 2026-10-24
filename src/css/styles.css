@@ -159,6 +159,12 @@ h1,h2,h3,p,ul,ol{margin:0}
 .cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:48px 40px;background:var(--pine);color:var(--on-pine);border-radius:var(--r-lg)}
 .cta .h2{max-width:560px;color:var(--on-pine)}
 .cta p{margin-top:8px;font-size:15px;line-height:24px}
+.cta-inline{padding:28px 32px;margin-block:40px}
+.article .cta-inline{margin-top:40px}
+.cta-title{font:400 24px/30px var(--serif);letter-spacing:-.01em;color:var(--on-pine);margin:0!important}
+.cta-inline p{color:var(--on-pine)}
+.article .cta-inline .cta-title{font-size:24px;line-height:30px}
+.article .cta-inline p:not(.cta-title){font-size:15px;line-height:24px}
 
 /* service detail */
 .svc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;padding-block:56px;border-top:1px solid var(--line-strong)}

@@ -15,9 +15,15 @@ ctaFlush: true
   <section class="section" style="padding-top:0">
     <div class="wrap">
       <article class="article">
-{{ body | beforeFirstH2 | safe }}
+{#- the intro, the email signup, the sections, with a consult prompt before the middle section -#}
+{%- set sections = body | h2Sections %}
+{%- set middle = (sections.length / 2) | round(0, "floor") %}
+{{ sections[0] | safe }}
 {% set source = "Guide: " ~ slug ~ " (intro)" %}{% set uid = "cap1" %}{% set slim = true %}{% include "partials/capture.njk" %}
-{{ body | fromFirstH2 | safe }}
+{%- for section in sections %}{% if not loop.first %}
+{%- if loop.index0 == middle %}{% set source = "Guide: " ~ slug ~ " (middle)" %}{% include "partials/consult-cta.njk" %}{% endif %}
+{{ section | safe }}
+{%- endif %}{% endfor %}
       </article>
       {%- set source = "Guide: " ~ slug ~ " (end)" %}{% set uid = "cap2" %}{% set slim = false %}
       {%- if site.subscribeEndpoint %}<div style="margin-top:48px">{% include "partials/capture.njk" %}</div>{% endif %}

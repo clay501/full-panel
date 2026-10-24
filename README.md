@@ -16,7 +16,7 @@ npm run build    # writes the finished site to _site/
 - `src/services/service.njk` — one page per service at `/services/<slug>/`, each with a consult form
 - `src/blog/*.md` — the guides (front matter plus Markdown), published at `/blog/<slug>/`; `src/blog/index.njk` is the guide list and `src/_includes/layouts/guide.njk` the guide layout
 - `src/_includes/layouts/base.njk` — the shared head, header, footer and nav
-- `src/_includes/partials/` — the logo mark, the slot panel, the "Book a free consult" banner, the consult form and the email signup box
+- `src/_includes/partials/` — the logo mark, the slot panel, the "Book a free consult" banner, the consult form, the email signup box and the consult box placed halfway through each guide
 - `src/_data/site.json` — site name, email, nav, LinkedIn page, GA4 ID, Formspree endpoint, email signup endpoint and the Proton booking link
 - `src/_data/services.json` — the six services; the home page cards, the Services page and each service's own page all come from here, so a change goes in one place
 - `src/_data/faq.json` — the questions on How it works; the FAQPage schema comes from here too
@@ -42,11 +42,12 @@ Every page gets a 1200×630 share image at `/og/<page>.png`, drawn at build time
 
 ## Analytics
 
-Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends three events:
+Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends four events:
 
 - `generate_lead` when a consult form (contact page or a service page) sends successfully, with `form_source` saying which
 - `sign_up` when someone joins the email list
 - `booking_click` when someone opens the Proton booking page
+- `consult_cta_click` when someone clicks the consult box in the middle of a guide, with `form_source` naming the guide
 
 Neither form event sends what the person typed.
 
