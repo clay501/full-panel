@@ -41,6 +41,7 @@ export default {
       addressCountry: "US",
     },
     founder: { "@id": personId },
+    sameAs: [site.linkedin],
   },
 
   person: {

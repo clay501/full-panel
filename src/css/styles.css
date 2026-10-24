@@ -212,6 +212,9 @@ h1,h2,h3,p,ul,ol{margin:0}
 .foot-links a:hover{text-decoration:underline}
 .foot-brand{display:grid;gap:20px}
 .foot-brand p{max-width:360px}
+.social{display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;margin:-4px;border-radius:12px}
+.social svg{width:36px;height:36px;display:block;transition:transform .18s ease-out}
+.social:hover svg{transform:translateY(-2px)}
 .foot-group ul{list-style:none;margin:0;padding:0 0 0 14px;border-left:1px solid var(--line);display:grid;gap:6px}
 .foot-group ul a{font-weight:400;font-size:15px;line-height:22px;color:var(--ink-muted)}
 .legal{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px;line-height:22px;color:var(--ink-muted)}

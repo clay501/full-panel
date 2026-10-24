@@ -17,7 +17,7 @@ npm run build    # writes the finished site to _site/
 - `src/blog/*.md` — the guides (front matter plus Markdown), published at `/blog/<slug>/`; `src/blog/index.njk` is the guide list and `src/_includes/layouts/guide.njk` the guide layout
 - `src/_includes/layouts/base.njk` — the shared head, header, footer and nav
 - `src/_includes/partials/` — the logo mark, the slot panel, the "Book a free consult" banner, the consult form and the email signup box
-- `src/_data/site.json` — site name, email, nav, GA4 ID, Formspree endpoint, email signup endpoint and the Proton booking link
+- `src/_data/site.json` — site name, email, nav, LinkedIn page, GA4 ID, Formspree endpoint, email signup endpoint and the Proton booking link
 - `src/_data/services.json` — the six services; the home page cards, the Services page and each service's own page all come from here, so a change goes in one place
 - `src/_data/faq.json` — the questions on How it works; the FAQPage schema comes from here too
 - `src/_data/schema.js` — structured data (JSON-LD): Organization, Person, Service and FAQPage
