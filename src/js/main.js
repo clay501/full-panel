@@ -20,23 +20,30 @@
     try{navigator.clipboard.writeText(t).then(function(){cp.textContent="Copied"},sel)}catch(e){sel()}
     setTimeout(function(){cp.textContent="Copy"},2000)});
 
-  // form (Formspree, same setup as layered.health)
-  var form=document.getElementById("consult-form");
-  if(!form)return;
-  var status=document.getElementById("form-status"),btn=document.getElementById("f-submit");
-  function say(t){status.hidden=false;status.textContent=t}
-  function check(id,fieldId,errId,bad){var el=document.getElementById(id);document.getElementById(fieldId).classList.toggle("invalid",bad);el.setAttribute("aria-invalid",String(bad));document.getElementById(errId).hidden=!bad;return el}
-  form.addEventListener("submit",function(e){e.preventDefault();
-    var n=document.getElementById("f-name"),em=document.getElementById("f-email");
-    var badN=!n.value.trim(),badE=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim());
-    check("f-name","name-field","f-name-err",badN);check("f-email","email-field","f-email-err",badE);
-    if(badN){n.focus();return}if(badE){em.focus();return}
-    var endpoint=form.getAttribute("data-endpoint");
-    if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co and I'll follow up to find a time.");return}
-    btn.disabled=true;say("Sending…");
-    fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
-      .then(function(r){if(!r.ok)throw new Error();form.reset();track("generate_lead",{form_id:"consult-form"});say("Thanks, your request is in. I'll be in touch to find a time.")})
-      .catch(function(){say("Something went wrong. Please try again, or email info@fullpanel.co.")})
-      .then(function(){btn.disabled=false});
+  // forms: consult requests (Formspree, same setup as layered.health) and
+  // email signups. A successful consult request sends generate_lead and a
+  // signup sends sign_up; neither sends what the person typed.
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function setInvalid(form,name,bad){var input=form.elements[name];if(!input)return;var field=input.closest(".field");if(field)field.classList.toggle("invalid",bad);input.setAttribute("aria-invalid",String(bad));var err=form.querySelector('[data-error-for="'+name+'"]');if(err)err.hidden=!bad}
+  [].forEach.call(document.querySelectorAll("form[data-form]"),function(form){
+    var kind=form.getAttribute("data-form"),status=form.querySelector(".form-status"),btn=form.querySelector('[type="submit"]');
+    function say(t){status.hidden=false;status.textContent=t}
+    form.addEventListener("submit",function(e){e.preventDefault();
+      var firstBad=null;
+      if(form.elements.name&&form.elements.name.required){var badN=!form.elements.name.value.trim();setInvalid(form,"name",badN);if(badN)firstBad=form.elements.name}
+      var badE=!EMAIL_RE.test(form.elements.email.value.trim());setInvalid(form,"email",badE);if(badE&&!firstBad)firstBad=form.elements.email;
+      if(firstBad){firstBad.focus();return}
+      var endpoint=form.getAttribute("data-endpoint");
+      if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co.");return}
+      var source=form.elements.source?form.elements.source.value:"";
+      btn.disabled=true;say("Sending\u2026");
+      fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
+        .then(function(r){if(!r.ok)throw new Error();form.reset();
+          if(kind==="consult")track("generate_lead",{form_id:"consult-form",form_source:source});
+          else track("sign_up",{method:"email",form_source:source});
+          say(form.getAttribute("data-success"))})
+        .catch(function(){say("Something went wrong. Please try again, or email info@fullpanel.co.")})
+        .then(function(){btn.disabled=false});
+    });
   });
 })();

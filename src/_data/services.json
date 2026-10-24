@@ -1,6 +1,7 @@
 [
   {
     "id": "audit",
+    "slug": "practice-growth-audit",
     "name": "Practice Growth Audit & Roadmap",
     "short": "I research how clients find therapists in your market, map your acquisition channels and deliver a prioritized, branded strategy deck.",
     "intro": "The audit is where every engagement starts. I look at your market the way a prospective client does, then look at your practice the way a referral source would.",
@@ -16,6 +17,7 @@
   },
   {
     "id": "referrals",
+    "slug": "referral-partner-development",
     "name": "Referral Partner Development",
     "short": "I build prospect lists of local PCPs and providers, run a structured outreach playbook and set a cadence that keeps those relationships active.",
     "intro": "Physicians, psychiatrists, school counselors and other therapists are often the most reliable source of good-fit clients. Most practices just don't have a system for reaching them.",
@@ -31,6 +33,7 @@
   },
   {
     "id": "directories",
+    "slug": "directory-listings-management",
     "name": "Directory & Listings Management",
     "short": "I audit your insurance directories, choose and optimize therapist directory profiles and claim your profiles on health platforms.",
     "intro": "Directories are often the first place a prospective client sees you, and insurance directories are notoriously out of date.",
@@ -45,6 +48,7 @@
   },
   {
     "id": "search",
+    "slug": "search-visibility",
     "name": "Search Visibility: SEO + AI Search",
     "short": "A site audit, local SEO and service-by-location pages, plus visibility in AI answers from ChatGPT, Claude, Perplexity and Google.",
     "intro": "More clients now ask an AI tool for a recommendation before they ever open a directory. Being findable means showing up in both places.",
@@ -59,6 +63,7 @@
   },
   {
     "id": "ads",
+    "slug": "paid-advertising",
     "name": "Paid Advertising",
     "short": "I choose the right mix of Google, Meta and LinkedIn, allocate small budgets starting around $50 a month and write compliant ad copy.",
     "intro": "Paid ads can work for therapists at a small scale, as long as they're set up carefully and follow the platforms' health rules.",
@@ -73,6 +78,7 @@
   },
   {
     "id": "social",
+    "slug": "social-media-content-strategy",
     "name": "Social Media & Content Strategy",
     "short": "A social audit with real numbers, content pillars, brand voice and bio rewrites, post concepts and calls to action that lead to bookings.",
     "intro": "Social media doesn't have to mean dancing on camera. It can be a quiet, steady way for the right people to get a sense of who you are.",

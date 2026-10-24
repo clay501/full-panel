@@ -18,8 +18,9 @@ export default function (eleventyConfig) {
 
   // Pages list the schema nodes they need in `schemaNodes` front matter; the
   // Organization is on every page.
-  eleventyConfig.addFilter("jsonLd", (schema, keys = []) => {
-    const graph = [schema.organization, ...keys.map((key) => schema[key])].flat();
+  eleventyConfig.addFilter("jsonLd", (schema, keys, extra) => {
+    const graph = [schema.organization, ...(keys || []).map((key) => schema[key]), ...[extra || []].flat()].flat();
+    if (graph.includes(undefined)) throw new Error(`Unknown schema node in ${keys}`);
     return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 2).replace(/</g, "\\u003c");
   });
   eleventyConfig.addFilter("ogSlug", ogSlug);
@@ -29,6 +30,27 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("bust", (url) =>
     `${url}?v=${createHash("md5").update(readFileSync(`src${url}`)).digest("hex").slice(0, 10)}`
   );
+  // Guides (src/blog/*.md)
+  eleventyConfig.addCollection("guide", (api) => api.getFilteredByGlob("src/blog/*.md"));
+  eleventyConfig.addFilter("byOrder", (items) => [...items].sort((a, b) => a.data.order - b.data.order));
+  eleventyConfig.addFilter("nextAfter", (items, url) => items[(items.findIndex((i) => i.url === url) + 1) % items.length]);
+  eleventyConfig.addFilter("readingMinutes", (html) =>
+    Math.max(1, Math.round((html.replace(/<[^>]*>/g, " ").match(/\w+/g) || []).length / 230))
+  );
+  // Checklists ("[ ] item") get styled boxes, tables scroll sideways on
+  // phones and links to other sites open in a new tab
+  eleventyConfig.addFilter("guideHtml", (html) =>
+    html
+      .replace(/<ul>\s*<li>\[ \] /g, '<ul class="tasks">\n<li>')
+      .replaceAll("<li>[ ] ", "<li>")
+      .replaceAll("<table>", '<div class="table-wrap"><table>')
+      .replaceAll("</table>", "</table></div>")
+      .replace(/<a href="(https?:\/\/[^"]+)">/g, '<a href="$1" target="_blank" rel="noopener">')
+  );
+  // The email signup sits after a guide's intro, before its first section
+  eleventyConfig.addFilter("beforeFirstH2", (html) => html.split(/(?=<h2[\s>])/)[0]);
+  eleventyConfig.addFilter("fromFirstH2", (html) => html.split(/(?=<h2[\s>])/).slice(1).join(""));
+  eleventyConfig.addPassthroughCopy("src/downloads");
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   // Every page needs one H1, a title and a meta description, and no two
@@ -62,7 +84,8 @@ export default function (eleventyConfig) {
         .filter(({ outputPath }) => outputPath?.endsWith(".html"))
         .map(async ({ url, content }) => {
           const title = decode(content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]);
-          const eyebrow = content.match(/<p class="eyebrow">([\s\S]*?)<\/p>/);
+          // the eyebrow, or on guides and service pages the "Guides"/"Services" crumb
+          const eyebrow = content.match(/<p class="(?:eyebrow|crumbs)">([\s\S]*?)<\/p>/);
           const png = await renderOgImage({ title, eyebrow: eyebrow && decode(eyebrow[1]) });
           await writeFile(path.join(outDir, `${ogSlug(url)}.png`), png);
         })

@@ -1,0 +1,22 @@
+{#- Email signup box. Set `source`, `uid` and `slim`. Renders nothing until
+    site.subscribeEndpoint is set, so visitors never see a form that can't send.
+    Subscribers should land in the welcome sequence (docs/emails/welcome-sequence.md). -#}
+{%- if site.subscribeEndpoint %}
+<form class="capture{% if slim %} slim{% endif %}" method="POST" data-form="subscribe" data-endpoint="{{ site.subscribeEndpoint }}" data-success="You're in. Check your inbox for the tracking sheet." novalidate>
+  {%- if slim %}
+  <p class="capture-title">Want the referral tracking sheet?</p>
+  <p>Sign up and I'll send the spreadsheet, plus a few short emails on filling your caseload.</p>
+  {%- else %}
+  <h2 class="capture-title">Get the referral tracking sheet</h2>
+  <p>Join the list and I'll send you the spreadsheet I'd use to keep a referral network alive, plus a few short emails on filling your caseload the ethical way. No spam, unsubscribe anytime.</p>
+  {%- endif %}
+  <input type="hidden" name="source" value="{{ source }}">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+  <div class="capture-row">
+    <div class="field"><label class="sr-only" for="{{ uid }}-name">First name</label><input id="{{ uid }}-name" name="first_name" autocomplete="given-name" placeholder="First name"></div>
+    <div class="field"><label class="sr-only" for="{{ uid }}-email">Email</label><input id="{{ uid }}-email" name="email" type="email" autocomplete="email" placeholder="Email" required><span class="error" data-error-for="email" hidden>Check the email address; it looks incomplete.</span></div>
+    <button class="btn btn-primary" type="submit">Send it to me</button>
+  </div>
+  <p class="form-status" role="status" aria-live="polite" hidden></p>
+</form>
+{%- endif %}

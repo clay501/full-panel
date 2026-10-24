@@ -1,6 +1,6 @@
 # fullpanel.co
 
-Static site for Full Panel, built with [Eleventy](https://www.11ty.dev/). Each section is a real page: `/`, `/services/`, `/how-it-works/`, `/about/` and `/contact/`.
+Static site for Full Panel, built with [Eleventy](https://www.11ty.dev/). Each section is a real page: `/`, `/services/` with a page for each service, `/how-it-works/`, `/blog/` (the guides), `/about/` and `/contact/`.
 
 ## Work on it
 
@@ -13,16 +13,20 @@ npm run build    # writes the finished site to _site/
 ## Where things live
 
 - `src/index.njk`, `src/services/`, `src/how-it-works/`, `src/about/`, `src/contact/` — the pages
+- `src/services/service.njk` — one page per service at `/services/<slug>/`, each with a consult form
+- `src/blog/*.md` — the guides (front matter plus Markdown), published at `/blog/<slug>/`; `src/blog/index.njk` is the guide list and `src/_includes/layouts/guide.njk` the guide layout
 - `src/_includes/layouts/base.njk` — the shared head, header, footer and nav
-- `src/_includes/partials/` — the logo mark and the "Book a free consult" banner at the bottom of each page
-- `src/_data/site.json` — site name, email, nav, Formspree endpoint and the Proton booking link
-- `src/_data/services.json` — the six services; the home page cards, the Services page and its jump links all come from here
+- `src/_includes/partials/` — the logo mark, the slot panel, the "Book a free consult" banner, the consult form and the email signup box
+- `src/_data/site.json` — site name, email, nav, GA4 ID, Formspree endpoint, email signup endpoint and the Proton booking link
+- `src/_data/services.json` — the six services; the home page cards, the Services page and each service's own page all come from here, so a change goes in one place
 - `src/_data/faq.json` — the questions on How it works; the FAQPage schema comes from here too
 - `src/_data/schema.js` — structured data (JSON-LD): Organization, Person, Service and FAQPage
 - `src/_data/panel.json` — the week-of-slots illustration on the home page
 - `src/css/styles.css` — all styles; brand colors are CSS variables at the top
-- `src/js/main.js` — sticky header, mobile menu, copy-email button and the contact form
+- `src/js/main.js` — sticky header, mobile menu, copy-email button, and every consult and signup form
 - `src/assets/` — logo SVGs and the About headshot
+- `src/downloads/referral-tracking-sheet.csv` — the referral tracking sheet, sent by welcome email 1
+- `docs/emails/welcome-sequence.md` — the four-email welcome sequence for new subscribers (load it into the email platform)
 - `src/favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` — browser tab, bookmark and home-screen icons (the mark on pine green)
 - `src/404.njk`, `src/sitemap.njk`, `src/robots.njk` — 404 page, sitemap.xml and robots.txt
 - `lib/og-image.js` — draws each page's share image (see below)
@@ -38,10 +42,13 @@ Every page gets a 1200×630 share image at `/og/<page>.png`, drawn at build time
 
 ## Analytics
 
-Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends two events:
+Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends three events:
 
-- `generate_lead` when the consult form sends successfully (no form contents are sent)
+- `generate_lead` when a consult form (contact page or a service page) sends successfully, with `form_source` saying which
+- `sign_up` when someone joins the email list
 - `booking_click` when someone opens the Proton booking page
+
+Neither form event sends what the person typed.
 
 Mark `generate_lead` as a key event in GA4 (Admin → Events) to count it as a conversion.
 
@@ -59,6 +66,24 @@ Old links like `fullpanel.co/#about` from the single-page version redirect to th
 
 Netlify builds the site from `main` (`npm run build`) and serves `_site/`, using `netlify.toml`. Every push to `main` goes live, and every pull request gets a deploy preview link first. Netlify serves `404.html` for any missing page. DNS stays at Porkbun: `fullpanel.co` has an A record to Netlify and `www` is a CNAME to `enchanting-druid-d1cdee.netlify.app`.
 
+## Email signup
+
+Each guide has two signup boxes (after the intro and at the end), and the guide list has one. They stay hidden until `subscribeEndpoint` in `src/_data/site.json` is set, so visitors never see a form that can't send. To turn them on:
+
+1. Pick an email platform that supports automations (for example Kit, MailerLite or Buttondown).
+2. Create the four emails in `docs/emails/welcome-sequence.md` as an automation triggered on signup. Add a business mailing address to the footer (CAN-SPAM).
+3. Put the platform's signup endpoint in `subscribeEndpoint`. The forms post `email`, `first_name` and `source` (which guide and which box); rename the fields in `src/_includes/partials/capture.njk` if the platform expects different names.
+
+## Guides
+
+The guides are first drafts. Before relying on them, recheck prices, Psychology Today limits and whether the revised ACA Code has been adopted.
+
+## Writing and design conventions
+
+- Colors, type and spacing come from the Full Panel design system: use the CSS custom properties in `src/css/styles.css`, never raw hex values in new components.
+- Voice: first person singular, warm, plain, no hype, no exclamation marks.
+- Ethics: no client testimonials or reviews, no client stories, no form fields asking about symptoms or clients.
+
 ## Contact form
 
-Formspree, same setup as layered.health. The endpoint is `formEndpoint` in `src/_data/site.json`, and fullpanel.co is on the form's allowed domains in Formspree.
+Formspree, same setup as layered.health. The contact page and all six service pages use the same form; service pages add a `service` field and a subject line naming the service. The endpoint is `formEndpoint` in `src/_data/site.json`, and fullpanel.co is on the form's allowed domains in Formspree.

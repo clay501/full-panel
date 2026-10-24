@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+title: Guides for growing a therapy practice
+description: "Practical, ethics-aligned guides for private-practice therapists: referrals, directories, Psychology Today and your first 90 days."
+permalink: /blog/
+ctaHeading: "Rather talk it through?"
+ctaFlush: true
+---
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Guides</p>
+      <h1 class="h1" style="max-width:760px">Practical guides for growing a private practice.</h1>
+      <p class="lede">Plain-language, ethics-aligned how-tos on referrals, directories and getting found, written for therapists who'd rather be doing therapy.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <ul class="guide-list">
+        {%- for g in collections.guide | byOrder %}
+        <li><a class="card" href="{{ g.url }}"><span class="eyebrow muted-eyebrow">Guide</span><h2>{{ g.data.title }}</h2><p>{{ g.data.description }}</p><span class="link arrow">Read the guide</span></a></li>
+        {%- endfor %}
+      </ul>
+      {%- set source = "Guides index" %}{% set uid = "cap1" %}{% set slim = false %}
+      {%- if site.subscribeEndpoint %}<div style="margin-top:48px">{% include "partials/capture.njk" %}</div>{% endif %}
+    </div>
+  </section>
+
+  {% include "partials/cta.njk" %}

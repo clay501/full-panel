@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
 <link rel="stylesheet" href="{{ "/css/styles.css" | bust }}">
 <script type="application/ld+json">
-{{ schema | jsonLd(schemaNodes) | safe }}
+{{ schema | jsonLd(schemaNodes, schemaExtra) | safe }}
 </script>
 </head>
 <body>
@@ -57,7 +57,7 @@
     <nav aria-label="Main">
       <ul class="nav">
         {%- for item in site.nav %}
-        <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
         {%- endfor %}
         <li><a class="btn btn-primary" href="/contact/">Book a free consult</a></li>
       </ul>
@@ -68,7 +68,7 @@
     <ul>
       <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
       {%- for item in site.nav %}
-      <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
       {%- endfor %}
       <li><a class="btn btn-primary" href="/contact/">Book a free consult</a></li>
     </ul>

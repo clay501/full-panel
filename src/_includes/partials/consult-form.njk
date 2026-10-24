@@ -1,0 +1,22 @@
+{#- Consult request form. Set `uid` (unique per page), and `service` on a service page. -#}
+<form class="form" action="{{ site.formEndpoint }}" method="POST" data-form="consult" data-endpoint="{{ site.formEndpoint }}" data-success="Thanks, your request is in. I'll be in touch to find a time." novalidate>
+        {%- if service %}
+        <h2 class="form-title">Request a free consult</h2>
+        <p class="help" style="margin:0">About {{ service.name }}, or anything else on your mind.</p>
+        <input type="hidden" name="_subject" value="Consult request: {{ service.name }}">
+        <input type="hidden" name="service" value="{{ service.name }}">
+        <input type="hidden" name="source" value="Service page">
+        {%- else %}
+        <input type="hidden" name="_subject" value="New Full Panel consult request">
+        <input type="hidden" name="source" value="Contact page">
+        {%- endif %}
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <div class="field"><label for="{{ uid }}-name">Your name</label><input id="{{ uid }}-name" name="name" autocomplete="name" required><span class="error" data-error-for="name" hidden>Please add your name.</span></div>
+        <div class="field"><label for="{{ uid }}-email">Email</label><input id="{{ uid }}-email" name="email" type="email" autocomplete="email" required><span class="error" data-error-for="email" hidden>Check the email address; it looks incomplete.</span></div>
+        <div class="field"><label for="{{ uid }}-type">Your practice</label>
+          <select id="{{ uid }}-type" name="practice"><option>Solo practice</option><option>Small group practice</option><option>Opening a practice soon</option><option>Something else</option></select></div>
+        <div class="field"><label for="{{ uid }}-where">Where you practice</label><input id="{{ uid }}-where" name="where" placeholder="City and state, or telehealth only"></div>
+        <div class="field"><label for="{{ uid }}-msg">What's on your mind?</label><textarea id="{{ uid }}-msg" name="message"></textarea><span class="help">Please don't include any client information.</span></div>
+        <button class="btn btn-primary" type="submit">Request a consult</button>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
+      </form>
