@@ -24,21 +24,28 @@
   // email signups. A successful consult request sends generate_lead and a
   // signup sends sign_up; neither sends what the person typed.
   var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  function setInvalid(form,name,bad){var input=form.elements[name];if(!input)return;var field=input.closest(".field");if(field)field.classList.toggle("invalid",bad);input.setAttribute("aria-invalid",String(bad));var err=form.querySelector('[data-error-for="'+name+'"]');if(err)err.hidden=!bad}
+  function setInvalid(form,input,errFor,bad){var field=input.closest(".field");if(field)field.classList.toggle("invalid",bad);input.setAttribute("aria-invalid",String(bad));var err=form.querySelector('[data-error-for="'+errFor+'"]');if(err)err.hidden=!bad}
   [].forEach.call(document.querySelectorAll("form[data-form]"),function(form){
     var kind=form.getAttribute("data-form"),status=form.querySelector(".form-status"),btn=form.querySelector('[type="submit"]');
     function say(t){status.hidden=false;status.textContent=t}
     form.addEventListener("submit",function(e){e.preventDefault();
-      var firstBad=null;
-      if(form.elements.name&&form.elements.name.required){var badN=!form.elements.name.value.trim();setInvalid(form,"name",badN);if(badN)firstBad=form.elements.name}
-      var badE=!EMAIL_RE.test(form.elements.email.value.trim());setInvalid(form,"email",badE);if(badE&&!firstBad)firstBad=form.elements.email;
+      var firstBad=null,nameIn=form.querySelector('input[name="name"]'),emailIn=form.querySelector('input[type="email"]');
+      if(nameIn&&nameIn.required){var badN=!nameIn.value.trim();setInvalid(form,nameIn,"name",badN);if(badN)firstBad=nameIn}
+      var badE=!EMAIL_RE.test(emailIn.value.trim());setInvalid(form,emailIn,"email",badE);if(badE&&!firstBad)firstBad=emailIn;
       if(firstBad){firstBad.focus();return}
       var endpoint=form.getAttribute("data-endpoint");
       if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co.");return}
-      var source=form.elements.source?form.elements.source.value:"";
+      var srcIn=form.querySelector('[name="source"],[name="fields[signup_source]"]'),source=srcIn?srcIn.value:"";
+      var data=new FormData(form);
+      // the hidden trap field is only ever filled in by bots; Formspree checks
+      // it itself, MailerLite doesn't know it, so for signups check it here
+      if(kind!=="consult"){if(data.get("_gotcha")){form.reset();say(form.getAttribute("data-success"));return}data.delete("_gotcha")}
       btn.disabled=true;say("Sending\u2026");
-      fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
-        .then(function(r){if(!r.ok)throw new Error();form.reset();
+      // Formspree answers {ok:true}; MailerLite answers {success:true}, and
+      // reports errors with a 200 status, so check the body as well
+      fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:data})
+        .then(function(r){if(!r.ok)throw new Error();return r.json().catch(function(){return{}})})
+        .then(function(d){if(d.ok===false||d.success===false)throw new Error();form.reset();
           if(kind==="consult")track("generate_lead",{form_id:"consult-form",form_source:source});
           else track("sign_up",{method:"email",form_source:source});
           say(form.getAttribute("data-success"))})

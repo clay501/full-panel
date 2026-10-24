@@ -1,8 +1,11 @@
 {#- Email signup box. Set `source`, `uid` and `slim`. Renders nothing until
     site.subscribeEndpoint is set, so visitors never see a form that can't send.
-    Subscribers should land in the welcome sequence (docs/emails/welcome-sequence.md). -#}
+    Posts to the MailerLite embedded form: fields[name], fields[email] and the
+    custom field fields[signup_source]. Double opt-in is on, so people confirm
+    by email first; the welcome sequence (docs/emails/welcome-sequence.md)
+    starts once they do. -#}
 {%- if site.subscribeEndpoint %}
-<form class="capture{% if slim %} slim{% endif %}" method="POST" data-form="subscribe" data-endpoint="{{ site.subscribeEndpoint }}" data-success="You're in. Check your inbox for the tracking sheet." novalidate>
+<form class="capture{% if slim %} slim{% endif %}" method="POST" data-form="subscribe" data-endpoint="{{ site.subscribeEndpoint }}" data-success="Almost done. Check your inbox to confirm, and I'll send the tracking sheet right after." novalidate>
   {%- if slim %}
   <p class="capture-title">Want the referral tracking sheet?</p>
   <p>Sign up and I'll send the spreadsheet, plus a few short emails on filling your caseload.</p>
@@ -10,11 +13,13 @@
   <h2 class="capture-title">Get the referral tracking sheet</h2>
   <p>Join the list and I'll send you the spreadsheet I'd use to keep a referral network alive, plus a few short emails on filling your caseload the ethical way. No spam, unsubscribe anytime.</p>
   {%- endif %}
-  <input type="hidden" name="source" value="{{ source }}">
+  <input type="hidden" name="fields[signup_source]" value="{{ source }}">
+  <input type="hidden" name="ml-submit" value="1">
+  <input type="hidden" name="anticsrf" value="true">
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
   <div class="capture-row">
-    <div class="field"><label class="sr-only" for="{{ uid }}-name">First name</label><input id="{{ uid }}-name" name="first_name" autocomplete="given-name" placeholder="First name"></div>
-    <div class="field"><label class="sr-only" for="{{ uid }}-email">Email</label><input id="{{ uid }}-email" name="email" type="email" autocomplete="email" placeholder="Email" required><span class="error" data-error-for="email" hidden>Check the email address; it looks incomplete.</span></div>
+    <div class="field"><label class="sr-only" for="{{ uid }}-name">First name</label><input id="{{ uid }}-name" name="fields[name]" autocomplete="given-name" placeholder="First name"></div>
+    <div class="field"><label class="sr-only" for="{{ uid }}-email">Email</label><input id="{{ uid }}-email" name="fields[email]" type="email" autocomplete="email" placeholder="Email" required><span class="error" data-error-for="email" hidden>Check the email address; it looks incomplete.</span></div>
     <button class="btn btn-primary" type="submit">Send it to me</button>
   </div>
   <p class="form-status" role="status" aria-live="polite" hidden></p>
