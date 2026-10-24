@@ -5,7 +5,7 @@ Four emails sent to everyone who signs up through a guide's email form. The firs
 **Sender:** Clay at Full Panel <info@fullpanel.co>
 **Audience:** private-practice therapists who signed up on a fullpanel.co guide
 **Merge field:** `{{first_name}}` with "there" as the fallback. Rename it to your email platform's syntax.
-**Footer on every email:** "You're getting this because you signed up for guides at fullpanel.co. Full Panel, [business mailing address]. Unsubscribe." A physical mailing address and a working unsubscribe link are required by CAN-SPAM.
+**Footer on every email:** "You're getting this because you signed up for guides at fullpanel.co. Full Panel, PO Box 32222, Philadelphia, PA 19146. Unsubscribe." A physical mailing address and a working unsubscribe link are required by CAN-SPAM.
 
 | # | Send | Subject | Goal |
 | --- | --- | --- | --- |

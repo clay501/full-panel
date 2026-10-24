@@ -71,7 +71,7 @@ Netlify builds the site from `main` (`npm run build`) and serves `_site/`, using
 Each guide has two signup boxes (after the intro and at the end), and the guide list has one. They stay hidden until `subscribeEndpoint` in `src/_data/site.json` is set, so visitors never see a form that can't send. To turn them on:
 
 1. Pick an email platform that supports automations (for example Kit, MailerLite or Buttondown).
-2. Create the four emails in `docs/emails/welcome-sequence.md` as an automation triggered on signup. Add a business mailing address to the footer (CAN-SPAM).
+2. Create the four emails in `docs/emails/welcome-sequence.md` as an automation triggered on signup. Each email's footer carries the mailing address and an unsubscribe link (CAN-SPAM); the footer text is at the top of that file.
 3. Put the platform's signup endpoint in `subscribeEndpoint`. The forms post `email`, `first_name` and `source` (which guide and which box); rename the fields in `src/_includes/partials/capture.njk` if the platform expects different names.
 
 ## Guides
