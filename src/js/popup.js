@@ -2,11 +2,11 @@
    Lead-capture pop-up. Markup: _includes/partials/popup.njk.
    Styles: the "Pop-up" section of css/styles.css.
 
-   Desktop: opens on exit intent (the mouse leaves through the top of
-   the window) once the visitor has been on the site 30 seconds or has
-   scrolled half the page. Phones and touch screens: a slim bar slides
-   up after 60% of the page, and tapping it opens the form as a bottom
-   sheet. Shows at most once every 14 days, never after a submit, and
+   Opens as soon as the visitor starts to scroll, on any device: a
+   centered card on desktop, and on phones and touch screens a slim bar
+   that opens the form as a bottom sheet when tapped. On desktop it also
+   opens on exit intent (the mouse leaves through the top of the window)
+   for visitors who leave without scrolling. Shows at most once every 14 days, never after a submit, and
    never on the contact page. Add ?popup=1 to a URL to force it open.
    ============================================================ */
 (function(){
@@ -33,12 +33,6 @@
     var s=load();if(!s)return true;
     return !s.done&&!(s.shown&&Date.now()-s.shown<WAIT)}
   function markShown(){seen=true;save({shown:Date.now()})}
-
-  // engagement: time on the site (this browser session) and deepest scroll
-  var start=Date.now();
-  try{start=+sessionStorage.getItem("fp-popup-start")||start;sessionStorage.setItem("fp-popup-start",String(start))}catch(e){}
-  var deepest=0;
-  function depth(){var max=document.documentElement.scrollHeight-innerHeight;return max>0?scrollY/max:0}
 
   // background scroll lock, keeping the page from shifting when the scrollbar goes
   function lock(on){var d=document.documentElement;
@@ -84,16 +78,13 @@
   // triggers
   if(force){if(touch)showBar();else open("modal")}
   else if(allowed()){
-    if(touch){
-      var onScroll=function(){deepest=Math.max(deepest,depth());
-        if(deepest>=.6){removeEventListener("scroll",onScroll);if(allowed())showBar()}};
-      addEventListener("scroll",onScroll,{passive:true});
-    }else{
-      addEventListener("scroll",function(){deepest=Math.max(deepest,depth())},{passive:true});
-      document.addEventListener("mouseout",function(e){
-        if(e.relatedTarget||e.clientY>0||isOpen)return;
-        if((Date.now()-start>=30000||deepest>=.5)&&allowed())open("modal")});
-    }
+    var trigger=function(){if(allowed()){if(touch)showBar();else open("modal")}};
+    // the first real scroll (a few pixels, so a bounce or a restored position at the top doesn't count)
+    var onScroll=function(){if(scrollY<8)return;removeEventListener("scroll",onScroll);trigger()};
+    addEventListener("scroll",onScroll,{passive:true});
+    if(!touch)document.addEventListener("mouseout",function(e){
+      if(e.relatedTarget||e.clientY>0||isOpen)return;
+      trigger()});
   }
 
   // form: inline checks, then the same Formspree request as the contact form
