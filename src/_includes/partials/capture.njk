@@ -5,7 +5,7 @@
     by email first; the welcome sequence (docs/emails/welcome-sequence.md)
     starts once they do. -#}
 {%- if site.subscribeEndpoint %}
-<form class="capture{% if slim %} slim{% endif %}" method="POST" data-form="subscribe" data-endpoint="{{ site.subscribeEndpoint }}" data-success="Almost done. Check your inbox to confirm, and I'll send the tracking sheet right after." novalidate>
+<form class="capture{% if slim %} slim{% endif %}" method="POST" data-form="subscribe" data-endpoint="{{ site.subscribeEndpoint }}" data-success="Check your inbox to confirm, and then I’ll send the tracking sheet to you." novalidate>
   {%- if slim %}
   <p class="capture-title">Want the referral tracking sheet?</p>
   <p>Sign up and I'll send the spreadsheet, plus a few short emails on filling your caseload.</p>
