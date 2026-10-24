@@ -1,6 +1,7 @@
 ---
 title: "Your first 90 days of marketing a new private practice"
 slug: first-90-days-marketing-private-practice
+footerTitle: "Your first 90 days of marketing a new private practice"
 order: 6
 description: "A week-by-week plan for the first three months of marketing a new therapy practice: the foundation, the relationships, and the habits that keep clients coming."
 date: 2026-10-24

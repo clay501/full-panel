@@ -1,6 +1,7 @@
 ---
 title: "How to get referrals from doctors as a therapist (with a first-email script)"
 slug: therapist-referrals-from-doctors
+footerTitle: "How to get referrals from doctors as a therapist"
 order: 1
 description: "Primary care is where more people look first when they're ready for therapy. Here's how to build referral relationships with doctors, what to say in your first email, and how to close the loop ethically."
 date: 2026-10-24

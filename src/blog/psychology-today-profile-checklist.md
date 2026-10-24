@@ -1,6 +1,7 @@
 ---
 title: "The Psychology Today profile checklist"
 slug: psychology-today-profile-checklist
+footerTitle: "The Psychology Today profile checklist"
 order: 3
 description: "A field-by-field checklist for a Psychology Today profile that gets the right people to reach out, from the first sentence to the photo, fees and ZIP codes."
 date: 2026-10-24

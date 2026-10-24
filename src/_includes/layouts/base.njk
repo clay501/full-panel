@@ -90,7 +90,17 @@
       </div>
       <ul class="foot-links">
         {%- for item in site.nav %}
+        {%- if item.url == "/blog/" %}
+        <li class="foot-group"><a href="/blog/">{{ item.title }}</a>
+          <ul>
+            {%- for g in collections.guide | byOrder %}
+            <li><a href="{{ g.url }}">{{ g.data.footerTitle or g.data.title }}</a></li>
+            {%- endfor %}
+          </ul>
+        </li>
+        {%- else %}
         <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {%- endif %}
         {%- endfor %}
         <li><a href="/contact/">Book a free consult</a></li>
       </ul>

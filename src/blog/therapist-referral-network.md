@@ -1,6 +1,7 @@
 ---
 title: "Building a therapist referral network that lasts (system, cadence, tracking sheet)"
 slug: therapist-referral-network
+footerTitle: "Building a therapist referral network that lasts"
 order: 2
 description: "A referral network isn't a list of names. It's a system: who you reach, how often, and how you keep track. Here's a simple one, with a tracking sheet you can copy."
 date: 2026-10-24

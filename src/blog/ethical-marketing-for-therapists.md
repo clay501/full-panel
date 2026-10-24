@@ -1,6 +1,7 @@
 ---
 title: "Ethical marketing for therapists: what the ACA Code allows, in plain language"
 slug: ethical-marketing-for-therapists
+footerTitle: "Ethical marketing for therapists"
 order: 5
 description: "What the ACA Code of Ethics says about advertising, testimonials, credentials, referrals and social media, translated into plain language with practical examples."
 date: 2026-10-24

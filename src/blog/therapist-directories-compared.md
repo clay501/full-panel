@@ -1,6 +1,7 @@
 ---
 title: "Therapist directories compared: Psychology Today, Zencare, Inclusive Therapists, Headway and others"
 slug: therapist-directories-compared
+footerTitle: "Therapist directories compared"
 order: 4
 description: "What the major therapist directories and insurance platforms cost in 2026, who each one is best for, and how to decide which are worth your money."
 date: 2026-10-24
