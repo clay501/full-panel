@@ -68,7 +68,7 @@ Netlify builds the site from `main` (`npm run build`) and serves `_site/`, using
 
 ## Email signup
 
-Each guide has two signup boxes (after the intro and at the end), and the guide list has one. They post to a MailerLite embedded form (`subscribeEndpoint` in `src/_data/site.json`; leave it empty to hide every box) with `fields[name]`, `fields[email]` and the custom field `fields[signup_source]`, which records the guide and box. The form adds people to the guide signup group with double opt-in, so they confirm by email first, and the welcome sequence in `docs/emails/welcome-sequence.md` runs as a MailerLite automation once they join the group.
+Each guide has two signup boxes (after the intro and at the end), and the guide list has one. They post to a MailerLite embedded form (`subscribeEndpoint` in `src/_data/site.json`; leave it empty to hide every box) with `fields[name]` (first name), `fields[last_name]`, `fields[email]` and the custom field `fields[signup_source]`, which records the guide and box. The form adds people to the guide signup group with double opt-in, so they confirm by email first, and the welcome sequence in `docs/emails/welcome-sequence.md` runs as a MailerLite automation once they join the group.
 
 MailerLite reports errors with a 200 status and `{"success":false}`, so `src/js/main.js` checks the response body, not just the status.
 

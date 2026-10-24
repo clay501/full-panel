@@ -29,8 +29,9 @@
     var kind=form.getAttribute("data-form"),status=form.querySelector(".form-status"),btn=form.querySelector('[type="submit"]');
     function say(t){status.hidden=false;status.textContent=t}
     form.addEventListener("submit",function(e){e.preventDefault();
-      var firstBad=null,nameIn=form.querySelector('input[name="name"]'),emailIn=form.querySelector('input[type="email"]');
-      if(nameIn&&nameIn.required){var badN=!nameIn.value.trim();setInvalid(form,nameIn,"name",badN);if(badN)firstBad=nameIn}
+      // required text boxes (marked data-err) must be filled in; email must look like one
+      var firstBad=null,emailIn=form.querySelector('input[type="email"]');
+      [].forEach.call(form.querySelectorAll("input[data-err]"),function(input){var bad=!input.value.trim();setInvalid(form,input,input.getAttribute("data-err"),bad);if(bad&&!firstBad)firstBad=input});
       var badE=!EMAIL_RE.test(emailIn.value.trim());setInvalid(form,emailIn,"email",badE);if(badE&&!firstBad)firstBad=emailIn;
       if(firstBad){firstBad.focus();return}
       var endpoint=form.getAttribute("data-endpoint");
