@@ -46,6 +46,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 /* type */
 .eyebrow{font:600 13px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
 .band .eyebrow,.muted-eyebrow{color:var(--ink-muted)}
+.eyebrow.accent{color:var(--ember)}
 .display{font:400 64px/68px var(--serif);letter-spacing:-.02em;font-variation-settings:"opsz" 72;text-wrap:balance}
 .h1{font:400 44px/50px var(--serif);letter-spacing:-.015em;font-variation-settings:"opsz" 60;text-wrap:balance}
 .h2{font:400 32px/38px var(--serif);letter-spacing:-.01em;font-variation-settings:"opsz" 36;text-wrap:balance}
@@ -87,6 +88,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 .band{background:var(--paper-deep)}
 .section-head{display:grid;gap:12px;max-width:var(--measure);margin-bottom:48px}
 .section-head .lede{margin-top:4px}
+.section-head-wide,.section-head-wide .lede{max-width:none}
 
 /* hero */
 .hero{padding-block:112px 96px}
@@ -110,8 +112,8 @@ h1,h2,h3,p,ul,ol{margin:0}
 /* problem */
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
 .feel-list{list-style:none;padding:0;display:grid;gap:0}
-.feel-list li{padding-block:20px;border-top:1px solid var(--line-strong)}
-.feel-list li:last-child{border-bottom:1px solid var(--line-strong)}
+.feel-list li{padding-block:20px;border-top:1px solid var(--pine-soft)}
+.feel-list li:last-child{border-bottom:1px solid var(--pine-soft)}
 
 /* cards */
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -134,15 +136,15 @@ h1,h2,h3,p,ul,ol{margin:0}
 .ethics-label{flex:none;font:600 13px/24px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .ethics p{font-size:15px;line-height:24px;color:var(--ink)}
 .principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;list-style:none;padding:0}
-.principles li{display:grid;gap:4px;padding-top:20px;border-top:1px solid var(--line-strong)}
+.principles li{display:grid;gap:4px;padding-top:20px;border-top:1px solid var(--pine-soft)}
 .principles strong{font-weight:600}
 .principles span{color:var(--ink-muted)}
 
 /* proof */
 .proof{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}
 .facts{display:grid;gap:0;list-style:none;padding:0}
-.facts li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--line-strong);align-items:baseline}
-.facts li:last-child{border-bottom:1px solid var(--line-strong)}
+.facts li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--pine-soft);align-items:baseline}
+.facts li:last-child{border-bottom:1px solid var(--pine-soft)}
 .fact-num{font:400 40px/1 var(--serif);color:var(--pine);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.01em}
 .facts p{color:var(--ink)}
 .facts .src{display:block;color:var(--ink-muted);font-size:15px;line-height:24px}
