@@ -47,9 +47,9 @@ export default function (eleventyConfig) {
       .replaceAll("</table>", "</table></div>")
       .replace(/<a href="(https?:\/\/[^"]+)">/g, '<a href="$1" target="_blank" rel="noopener">')
   );
-  // The email signup sits after a guide's intro, before its first section
-  eleventyConfig.addFilter("beforeFirstH2", (html) => html.split(/(?=<h2[\s>])/)[0]);
-  eleventyConfig.addFilter("fromFirstH2", (html) => html.split(/(?=<h2[\s>])/).slice(1).join(""));
+  // A guide split into its intro and one piece per section (each starting at
+  // its H2), so the email signup and the consult prompt can sit between them
+  eleventyConfig.addFilter("h2Sections", (html) => html.split(/(?=<h2[\s>])/));
   eleventyConfig.addPassthroughCopy("src/downloads");
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 

@@ -12,6 +12,7 @@
   // analytics events (no-ops until GA4 is set up in site.json)
   function track(name,params){if(window.gtag)gtag("event",name,params)}
   document.addEventListener("click",function(e){var a=e.target.closest('a[href^="https://calendar.proton.me/bookings"]');if(a)track("booking_click",{link_url:a.href})});
+  document.addEventListener("click",function(e){var a=e.target.closest("a[data-cta]");if(a)track("consult_cta_click",{form_source:a.getAttribute("data-cta")})});
 
   // copy email
   var cp=document.getElementById("copy");
