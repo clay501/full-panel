@@ -50,9 +50,15 @@ Small, compositor-only motion (transform and opacity), all in `src/css/styles.cs
 
 With reduced motion turned on, or without JavaScript, nothing is hidden, nothing moves and the numbers show as written.
 
+## Fonts and loading speed
+
+- **Fonts are self-hosted** in `src/fonts/` (Newsreader and Instrument Sans, both under the SIL Open Font License, included). They're cut down to the weights, sizes and characters the site uses: Latin-1 plus curly quotes, dashes, arrows and the minus sign. If new copy needs a character outside that (Greek, say), it will fall back to Georgia or the system sans for that one glyph. In that case, rebuild the font files with fontTools, adding the character.
+- **Caching:** `netlify.toml` tells browsers to keep CSS, JS and fonts for a year. That's safe because pages link CSS and JS with a `?v=` fingerprint and the font files have `-v1` in the name, so if you replace a font, rename it to `-v2` and update the `@font-face` rules at the top of `styles.css`. Photos and share images are cached for a week; HTML is always rechecked.
+- **Analytics loads last:** `gtag.js` is fetched after the page has finished loading, so it never competes with the page itself. Visits are still counted, but someone who leaves within the first second or two won't be.
+
 ## Analytics
 
-Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends four events:
+Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set (after the page loads; see above). `src/js/main.js` sends four events:
 
 - `generate_lead` when a consult form (contact page or a service page) sends successfully, with `form_source` saying which
 - `sign_up` when someone joins the email list
