@@ -16,10 +16,17 @@
         <input type="hidden" name="_subject" value="New Full Panel pop-up lead">
         <input type="hidden" name="source" value="popup">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-        <div class="fp-pop-field">
-          <label for="fp-pop-name">First name</label>
-          <input id="fp-pop-name" name="first_name" autocomplete="given-name" required aria-describedby="fp-pop-name-err">
-          <span class="fp-pop-err" id="fp-pop-name-err" hidden></span>
+        <div class="fp-pop-names">
+          <div class="fp-pop-field">
+            <label for="fp-pop-name">First name</label>
+            <input id="fp-pop-name" name="first_name" autocomplete="given-name" required aria-describedby="fp-pop-name-err">
+            <span class="fp-pop-err" id="fp-pop-name-err" hidden></span>
+          </div>
+          <div class="fp-pop-field">
+            <label for="fp-pop-last">Last name</label>
+            <input id="fp-pop-last" name="last_name" autocomplete="family-name" required aria-describedby="fp-pop-last-err">
+            <span class="fp-pop-err" id="fp-pop-last-err" hidden></span>
+          </div>
         </div>
         <div class="fp-pop-field">
           <label for="fp-pop-email">Email</label>

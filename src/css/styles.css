@@ -357,6 +357,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 .fp-pop-sub{margin:12px 0 0;font:400 17px/28px var(--sans);color:var(--ink-muted)}
 .fp-pop-form{display:grid;gap:16px;margin-top:24px}
 .fp-pop-field{display:grid;gap:6px}
+.fp-pop-names{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .fp-pop-field label{font:600 15px/20px var(--sans);color:var(--ink)}
 .fp-pop-opt{font-weight:400;color:var(--ink-muted)}
 .fp-pop-field input{min-height:44px;width:100%;padding:10px 14px;font:400 17px/24px var(--sans);color:var(--ink);background:var(--surface-raised);border:1px solid var(--line-strong);border-radius:var(--r-sm)}
@@ -387,5 +388,5 @@ h1,h2,h3,p,ul,ol{margin:0}
 .fp-pop:not(.is-open) .fp-pop-card{transform:translateY(8px)}
 .fp-pop.is-sheet:not(.is-open) .fp-pop-card,.fp-bar:not(.is-open){transform:translateY(24px)}
 @media (prefers-reduced-motion:reduce){.fp-pop .fp-pop-backdrop,.fp-pop .fp-pop-card,.fp-bar{transition:none}}
-@media (max-width:640px){.fp-pop-card{padding:24px}.fp-pop-title{font-size:26px;line-height:32px}}
+@media (max-width:640px){.fp-pop-card{padding:24px}.fp-pop-title{font-size:26px;line-height:32px}.fp-pop-names{grid-template-columns:1fr}}
 /* ======================== end pop-up ======================== */

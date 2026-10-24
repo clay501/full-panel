@@ -101,14 +101,15 @@
     err.textContent=msg;err.hidden=!msg;input.setAttribute("aria-invalid",msg?"true":"false");return !!msg}
   function check(input){
     if(input.name==="first_name")return setErr(input,input.value.trim()?"":"Please add your first name.");
+    if(input.name==="last_name")return setErr(input,input.value.trim()?"":"Please add your last name.");
     var v=input.value.trim();
     return setErr(input,!v?"Please add your email address.":EMAIL_RE.test(v)?"":"Check the email address; it looks incomplete.")}
-  [form.first_name,form.email].forEach(function(input){
+  [form.first_name,form.last_name,form.email].forEach(function(input){
     input.addEventListener("input",function(){if(input.getAttribute("aria-invalid")==="true")check(input)})});
 
   form.addEventListener("submit",function(e){e.preventDefault();
-    var badName=check(form.first_name),badEmail=check(form.email);
-    if(badName||badEmail){(badName?form.first_name:form.email).focus();return}
+    var bad=[form.first_name,form.last_name,form.email].filter(check);
+    if(bad.length){bad[0].focus();return}
     fail.hidden=true;btn.disabled=true;btn.textContent="Sending…";
     fetch(form.getAttribute("action"),{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
       .then(function(r){if(!r.ok)throw new Error();return r.json().catch(function(){return{}})})
