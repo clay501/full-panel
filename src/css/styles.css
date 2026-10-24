@@ -333,3 +333,59 @@ h1,h2,h3,p,ul,ol{margin:0}
 .other-svcs a:hover{border-color:var(--ink)}
 @media (max-width:900px){.svc-page{grid-template-columns:1fr;gap:40px}.svc-page .form{position:static}.guide-list{grid-template-columns:1fr}}
 @media (max-width:640px){.page-hero{padding-block:48px 32px}.article h2{font-size:24px;line-height:30px}.article p,.article li{font-size:17px;line-height:28px}.capture{padding:20px}}
+
+/* ============================================================
+   Pop-up (lead capture). Markup: _includes/partials/popup.njk.
+   Behavior: js/popup.js. Uses only the tokens in :root, so it
+   follows dark mode automatically.
+   ============================================================ */
+.fp-pop{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px}
+.fp-pop[hidden],.fp-bar[hidden]{display:none}
+.fp-pop-backdrop{position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 40%,transparent)}
+/* in dark mode --ink is cream and would brighten the page, so dim with --paper instead */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fp-pop-backdrop{background:color-mix(in srgb,var(--paper) 70%,transparent)}}
+:root[data-theme="dark"] .fp-pop-backdrop{background:color-mix(in srgb,var(--paper) 70%,transparent)}
+.fp-pop-card{position:relative;width:100%;max-width:520px;max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;background:var(--surface-raised);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-float);padding:40px}
+.fp-pop-tiles{display:flex;gap:6px;margin-bottom:20px}
+.fp-pop-tiles i{width:28px;height:18px;border-radius:var(--r-sm);background:var(--pine-soft)}
+.fp-pop-tiles i.hot{background:var(--ember)}
+.fp-pop-x{position:absolute;top:12px;right:12px;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:999px;background:none;color:var(--ink-muted);font:400 28px/1 var(--sans);cursor:pointer}
+.fp-pop-x:hover{color:var(--ink);background:var(--paper-deep)}
+.fp-pop-eyebrow{margin:0 0 12px;font:600 13px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
+.fp-pop-title{margin:0;font:400 32px/38px var(--serif);letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.fp-pop-title:focus{outline:none}
+.fp-pop-sub{margin:12px 0 0;font:400 17px/28px var(--sans);color:var(--ink-muted)}
+.fp-pop-form{display:grid;gap:16px;margin-top:24px}
+.fp-pop-field{display:grid;gap:6px}
+.fp-pop-field label{font:600 15px/20px var(--sans);color:var(--ink)}
+.fp-pop-opt{font-weight:400;color:var(--ink-muted)}
+.fp-pop-field input{min-height:44px;width:100%;padding:10px 14px;font:400 17px/24px var(--sans);color:var(--ink);background:var(--surface-raised);border:1px solid var(--line-strong);border-radius:var(--r-sm)}
+.fp-pop-field input::placeholder{color:var(--ink-muted);opacity:1}
+.fp-pop-field input[aria-invalid="true"]{border-color:var(--danger)}
+.fp-pop-err,.fp-pop-fail{margin:0;font:500 15px/22px var(--sans);color:var(--danger)}
+.fp-pop-fail a{color:inherit}
+.fp-pop-btn{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;margin-top:24px;padding:12px 24px;border:0;border-radius:999px;background:var(--pine);color:var(--on-pine);font:600 15px/20px var(--sans);text-decoration:none;cursor:pointer;transition:background-color .18s ease-out}
+.fp-pop-form .fp-pop-btn{margin-top:8px}
+.fp-pop-btn:hover{background:var(--ink);color:var(--on-pine)}
+.fp-pop-btn:disabled{cursor:progress;opacity:.75}
+.fp-pop-trust{margin:12px 0 0;font:400 15px/22px var(--sans);color:var(--ink-muted);text-align:center}
+.fp-pop-form .fp-pop-trust{margin-top:-4px}
+/* focus: a 2px paper gap, then the 2px ember ring */
+.fp-pop :focus-visible,.fp-bar :focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;box-shadow:0 0 0 2px var(--paper)}
+/* phones: the card becomes a bottom sheet */
+.fp-pop.is-sheet{place-items:end stretch;padding:0}
+.fp-pop.is-sheet .fp-pop-card{max-width:none;max-height:92dvh;border-radius:var(--r-lg) var(--r-lg) 0 0;border-bottom:0;padding:24px 24px calc(24px + env(safe-area-inset-bottom))}
+/* phones: the slim bar that opens the sheet */
+.fp-bar{position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:55;display:flex;align-items:center;gap:8px;padding:8px 4px 8px 14px;background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-float)}
+.fp-bar-text{flex:1;margin:0;font:400 15px/19px var(--serif);color:var(--ink);text-wrap:balance}
+.fp-bar-btn{flex:none;min-height:44px;padding:8px 14px;border:0;border-radius:999px;background:var(--pine);color:var(--on-pine);font:600 14px/18px var(--sans);cursor:pointer}
+.fp-bar-btn:hover{background:var(--ink)}
+.fp-bar-x{flex:none;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:999px;background:none;color:var(--ink-muted);font:400 24px/1 var(--sans);cursor:pointer}
+/* motion: 180ms fade and slight rise (the sheet and bar rise from the bottom) */
+.fp-pop .fp-pop-backdrop,.fp-pop .fp-pop-card,.fp-bar{transition:opacity .18s ease-out,transform .18s ease-out}
+.fp-pop:not(.is-open) .fp-pop-backdrop,.fp-pop:not(.is-open) .fp-pop-card,.fp-bar:not(.is-open){opacity:0}
+.fp-pop:not(.is-open) .fp-pop-card{transform:translateY(8px)}
+.fp-pop.is-sheet:not(.is-open) .fp-pop-card,.fp-bar:not(.is-open){transform:translateY(24px)}
+@media (prefers-reduced-motion:reduce){.fp-pop .fp-pop-backdrop,.fp-pop .fp-pop-card,.fp-bar{transition:none}}
+@media (max-width:640px){.fp-pop-card{padding:24px}.fp-pop-title{font-size:26px;line-height:32px}}
+/* ======================== end pop-up ======================== */

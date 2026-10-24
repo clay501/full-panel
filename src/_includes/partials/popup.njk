@@ -1,0 +1,53 @@
+{#- ============================================================
+    Lead-capture pop-up (markup). Styles: the "Pop-up" section at the
+    end of css/styles.css. Behavior: js/popup.js. Not included on the
+    contact page, which already has the consult form.
+    ============================================================ -#}
+<div class="fp-pop" id="fp-pop" hidden>
+  <div class="fp-pop-backdrop" data-pop-close></div>
+  <div class="fp-pop-card" role="dialog" aria-modal="true" aria-labelledby="fp-pop-title" aria-describedby="fp-pop-desc">
+    <span class="fp-pop-tiles" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="hot"></i><i></i></span>
+    <button class="fp-pop-x" type="button" aria-label="Close" data-pop-close>&times;</button>
+    <div class="fp-pop-step" data-pop-step="1">
+      <p class="fp-pop-eyebrow">Free consult</p>
+      <h2 class="fp-pop-title" id="fp-pop-title">Presenting problem: not enough referrals.</h2>
+      <p class="fp-pop-sub" id="fp-pop-desc">You were trained to do therapy, not marketing. Let's start with an assessment, as you would with any new client. From there, we can build a plan together based on your goals, values, and vision.</p>
+      <form class="fp-pop-form" action="{{ site.formEndpoint }}" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New Full Panel pop-up lead">
+        <input type="hidden" name="source" value="popup">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <div class="fp-pop-field">
+          <label for="fp-pop-name">First name</label>
+          <input id="fp-pop-name" name="first_name" autocomplete="given-name" required aria-describedby="fp-pop-name-err">
+          <span class="fp-pop-err" id="fp-pop-name-err" hidden></span>
+        </div>
+        <div class="fp-pop-field">
+          <label for="fp-pop-email">Email</label>
+          <input id="fp-pop-email" name="email" type="email" autocomplete="email" required aria-describedby="fp-pop-email-err">
+          <span class="fp-pop-err" id="fp-pop-email-err" hidden></span>
+        </div>
+        <div class="fp-pop-field">
+          <label for="fp-pop-site">Your website or Psychology Today profile <span class="fp-pop-opt">(optional)</span></label>
+          <input id="fp-pop-site" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://">
+        </div>
+        <button class="fp-pop-btn" type="submit">Book a free consult</button>
+        <p class="fp-pop-trust">Free, no pressure, no pitch deck. Please don't include any client information.</p>
+        <p class="fp-pop-fail" role="alert" hidden>Something went wrong. You can also email <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+      </form>
+    </div>
+    <div class="fp-pop-step" data-pop-step="2" hidden>
+      <p class="fp-pop-eyebrow">Free consult</p>
+      <h2 class="fp-pop-title" id="fp-pop-done" tabindex="-1">Thanks. Let's find a time.</h2>
+      <p class="fp-pop-sub" id="fp-pop-done-desc">Pick a time for your free 30-minute consult below.</p>
+      <a class="fp-pop-btn" href="{{ site.bookingUrl }}" target="_blank" rel="noopener" data-pop-book>Choose a time<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <p class="fp-pop-trust">I'll also follow up at the email you gave me.</p>
+    </div>
+  </div>
+</div>
+<div class="fp-bar" id="fp-bar" role="region" aria-label="Free consult" hidden>
+  <p class="fp-bar-text">Presenting problem: not enough referrals.</p>
+  <button class="fp-bar-btn" type="button" data-pop-open>Book a free consult</button>
+  <button class="fp-bar-x" type="button" aria-label="Close" data-bar-close>&times;</button>
+</div>
+<script src="{{ "/js/popup.js" | bust }}" defer></script>
+{#- ======================== end pop-up ======================== -#}

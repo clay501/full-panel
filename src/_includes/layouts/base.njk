@@ -111,5 +111,6 @@ addEventListener("load",function(){(window.requestIdleCallback||setTimeout)(func
 </footer>
 
 <script src="{{ "/js/main.js" | bust }}" defer></script>
+{% if page.url != "/contact/" %}{% include "partials/popup.njk" %}{% endif %}
 </body>
 </html>
