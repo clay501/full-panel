@@ -139,7 +139,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 .facts{display:grid;gap:0;list-style:none;padding:0}
 .facts li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding-block:20px;border-top:1px solid var(--line-strong);align-items:baseline}
 .facts li:last-child{border-bottom:1px solid var(--line-strong)}
-.fact-num{font:400 40px/1 var(--serif);color:var(--pine);font-variant-numeric:lining-nums;letter-spacing:-.01em}
+.fact-num{font:400 40px/1 var(--serif);color:var(--pine);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.01em}
 .facts p{color:var(--ink)}
 .facts .src{display:block;color:var(--ink-muted);font-size:15px;line-height:24px}
 .fine{font-size:15px;line-height:24px;color:var(--ink-muted);max-width:var(--measure)}
@@ -260,6 +260,25 @@ h1,h2,h3,p,ul,ol{margin:0}
   .wordmark{font-size:22px}
   .panel-card{padding:20px}
   .panel-grid{grid-template-columns:36px repeat(5,minmax(0,1fr));gap:6px}
+}
+/* ===== Motion =====
+   Everything here only moves transform and opacity, so it stays on the
+   compositor. main.js adds .reveal to elements below the fold and .in when
+   they scroll into view; without JS, or with reduced motion, nothing is
+   hidden and nothing moves. */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translate3d(0,14px,0);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Primary buttons: a damped spring (stiffness 260, damping 18) sampled
+     into linear(); browsers without linear() get an overshooting cubic */
+  .btn-primary,.btn-on-pine{--spring:cubic-bezier(.34,1.45,.64,1);transition:background-color .18s ease-out,border-color .18s ease-out,color .18s ease-out,transform .62s var(--spring),box-shadow .62s var(--spring)}
+  @supports (transition-timing-function:linear(0, 1)){
+    .btn-primary,.btn-on-pine{--spring:linear(0, 0.039, 0.137, 0.271, 0.42, 0.571, 0.71, 0.832, 0.932, 1.009, 1.064, 1.099, 1.116, 1.121, 1.115, 1.103, 1.086, 1.068, 1.05, 1.033, 1.019, 1.007, 0.998, 0.992, 0.988, 0.986, 0.985, 0.986, 0.988, 0.99, 0.992, 0.994, 0.996, 0.998, 0.999, 1)}
+  }
+  .btn-primary:hover,.btn-on-pine:hover{transform:translate3d(0,-2px,0) scale(1.02);box-shadow:0 6px 18px -8px rgba(22,67,62,.55)}
+  .btn-primary:active,.btn-on-pine:active{transform:scale(.97);box-shadow:none;transition-duration:.18s,.18s,.18s,.12s,.12s}
+  .btn-primary:disabled{transform:none;box-shadow:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 

@@ -40,6 +40,16 @@ Each page sets `title` and `description` in its front matter (the home page uses
 
 Every page gets a 1200×630 share image at `/og/<page>.png`, drawn at build time from the page's eyebrow and H1 in the site's fonts and colors. Change a headline and its image changes with it. The fonts come from the `@fontsource` packages.
 
+## Motion
+
+Small, compositor-only motion (transform and opacity), all in `src/css/styles.css` (the Motion block) and `src/js/main.js`, with no libraries:
+
+- **Fade-ins:** cards, steps, list items, FAQs, CTAs and signup boxes below the fold rise 14px and fade in as they scroll into view (IntersectionObserver), cascading 70ms apart when several arrive together. Anything already on screen at load stays put, so nothing flashes.
+- **Counting stats:** the home page figures (300+, 150+, 100+) count up from 0 over 1.4s the first time they're on screen. Screen readers get the real figure straight away.
+- **Spring buttons:** primary buttons lift 2px and grow 2% on hover with a damped spring (stiffness 260, damping 18) sampled into a CSS `linear()` easing, and press in to 97% on click. Browsers without `linear()` get an overshooting cubic-bezier.
+
+With reduced motion turned on, or without JavaScript, nothing is hidden, nothing moves and the numbers show as written.
+
 ## Analytics
 
 Google Analytics 4 loads once `gaMeasurementId` in `src/_data/site.json` is set. `src/js/main.js` sends four events:
