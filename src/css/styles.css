@@ -220,6 +220,12 @@ h1,h2,h3,p,ul,ol{margin:0}
 .lockup svg{width:52px;height:auto}
 .lockup .wordmark{font-size:30px;line-height:32px}
 .lockup .tagline{display:block;margin-top:4px;font:600 10.5px/14px var(--sans);letter-spacing:.115em;text-transform:uppercase;color:var(--ink-muted)}
+/* Footer lockup: wordmark sized to the mark, tagline spanning the wordmark. Everything scales off --m, the mark's width. */
+.lockup-lg{--m:min(68px,calc((100vw - 32px)/5.7));gap:calc(var(--m)*.25)}
+.lockup-lg svg{width:var(--m);flex:none}
+.lockup-lg>span{position:relative;top:calc(var(--m)*.04)}
+.lockup-lg .wordmark{display:block;font:500 calc(var(--m)*.926)/.8 var(--serif);letter-spacing:.018em;font-variation-settings:"opsz" 72}
+.lockup-lg .tagline{margin-top:0;font-size:calc(var(--m)*.154);line-height:1;letter-spacing:.125em}
 .foot-links{list-style:none;padding:0;display:grid;gap:8px}
 .foot-links a{text-decoration:none;font-weight:700}
 .foot-links a:hover{text-decoration:underline}
