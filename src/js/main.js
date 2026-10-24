@@ -3,6 +3,40 @@
   var routes={services:"/services/",how:"/how-it-works/",about:"/about/",contact:"/contact/"};
   if(location.pathname==="/"&&routes[location.hash.slice(1)]){location.replace(routes[location.hash.slice(1)]);return}
 
+  // motion: cards fade up as they scroll in, and the stats count up. Skipped
+  // with reduced motion or without IntersectionObserver, which leaves
+  // everything visible and the numbers as written.
+  var calm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!calm&&"IntersectionObserver" in window){
+    // cards and list items; anything already on screen stays put so the page never flashes
+    var revealIO=new IntersectionObserver(function(entries){
+      var shown=0;
+      entries.forEach(function(en){if(!en.isIntersecting)return;var el=en.target;
+        // items arriving together cascade, 70ms apart, at most 280ms
+        el.style.setProperty("--reveal-delay",Math.min(shown++*70,280)+"ms");el.classList.add("in");revealIO.unobserve(el);
+        // once its own slide-up ends, drop the classes so later hovers and sticky children behave normally
+        el.addEventListener("transitionend",function done(e){if(e.target!==el||e.propertyName!=="transform")return;el.removeEventListener("transitionend",done);el.classList.remove("reveal","in");el.style.removeProperty("--reveal-delay")})});
+    },{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    [].forEach.call(document.querySelectorAll(".card,.step,.principles li,.facts li,.feel-list li,.svc,.timeline li,.faq details,.cta,.capture"),function(el){
+      if(el.getBoundingClientRect().top<innerHeight)return;
+      el.classList.add("reveal");revealIO.observe(el)});
+
+    // stats: "300+" ticks up from 0 the first time it's on screen
+    var ease=function(t){return 1-Math.pow(1-t,4)};
+    var countIO=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(!en.isIntersecting)return;countIO.unobserve(en.target);
+        var el=en.target,shown=el.firstChild,target=+el.getAttribute("data-count"),suffix=el.getAttribute("data-suffix"),start=null,dur=1400;
+        function frame(now){if(start===null)start=now;var t=Math.min((now-start)/dur,1);shown.textContent=Math.round(target*ease(t))+suffix;if(t<1)requestAnimationFrame(frame)}
+        requestAnimationFrame(frame)});
+    },{threshold:.6});
+    [].forEach.call(document.querySelectorAll(".fact-num"),function(el){
+      var m=el.textContent.trim().match(/^(\d+)(.*)$/);if(!m)return;
+      // screen readers get the real figure; the ticking copy is hidden from them
+      el.setAttribute("data-count",m[1]);el.setAttribute("data-suffix",m[2]);
+      el.innerHTML='<span aria-hidden="true">0'+m[2]+'</span><span class="visually-hidden">'+m[0]+'</span>';
+      countIO.observe(el)});
+  }
+
   // header
   var header=document.querySelector(".site-header");
   window.addEventListener("scroll",function(){header.classList.toggle("scrolled",window.scrollY>8)},{passive:true});

@@ -24,8 +24,8 @@
 <meta name="msvalidate.01" content="{{ site.bingSiteVerification }}">
 {%- endif %}
 {%- if site.gaMeasurementId %}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gaMeasurementId }}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","{{ site.gaMeasurementId }}");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","{{ site.gaMeasurementId }}");
+addEventListener("load",function(){(window.requestIdleCallback||setTimeout)(function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={{ site.gaMeasurementId }}";document.head.appendChild(s)})});</script>
 {%- endif %}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.name }}">
@@ -37,9 +37,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{{ pageTitle }}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<link rel="preload" href="/fonts/newsreader-roman-v1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-sans-v1.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ "/css/styles.css" | bust }}">
 <script type="application/ld+json">
 {{ schema | jsonLd(schemaNodes, schemaExtra) | safe }}
@@ -83,9 +82,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="lockup" href="/" style="text-decoration:none" aria-label="Full Panel, home">
+        <a class="brand" href="/" aria-label="Full Panel, home">
           {% include "partials/mark.njk" %}
-          <span><span class="wordmark">Full Panel</span><span class="tagline">{{ site.tagline }}</span></span>
+          <span class="wordmark">Full Panel</span>
         </a>
         <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
         <a class="social" href="{{ site.linkedin }}" target="_blank" rel="noopener" aria-label="Full Panel on LinkedIn">
