@@ -1,0 +1,28 @@
+{#- Email signup box. Set `source`, `uid` and `slim`. Renders nothing until
+    site.subscribeEndpoint is set, so visitors never see a form that can't send.
+    Posts to the MailerLite embedded form: fields[name] (first name),
+    fields[last_name], fields[email] and the custom field fields[signup_source]. Double opt-in is on, so people confirm
+    by email first; the welcome sequence (docs/emails/welcome-sequence.md)
+    starts once they do. -#}
+{%- if site.subscribeEndpoint %}
+<form class="capture{% if slim %} slim{% endif %}" method="POST" data-form="subscribe" data-endpoint="{{ site.subscribeEndpoint }}" data-success="Please check your inbox to confirm your email. I’ll then send you the tracking sheet." novalidate>
+  {%- if slim %}
+  <p class="capture-title">Want the referral tracking sheet?</p>
+  <p>Sign up and I'll send the spreadsheet, plus a few short emails on filling your caseload.</p>
+  {%- else %}
+  <h2 class="capture-title">Get the referral tracking sheet</h2>
+  <p>Join the list and I'll send you the spreadsheet I'd use to keep a referral network alive, plus a few short emails on filling your caseload the ethical way. No spam, unsubscribe anytime.</p>
+  {%- endif %}
+  <input type="hidden" name="fields[signup_source]" value="{{ source }}">
+  <input type="hidden" name="ml-submit" value="1">
+  <input type="hidden" name="anticsrf" value="true">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+  <div class="capture-row">
+    <div class="field"><label class="sr-only" for="{{ uid }}-name">First name</label><input id="{{ uid }}-name" name="fields[name]" autocomplete="given-name" placeholder="First name" required data-err="first"><span class="error" data-error-for="first" hidden>Please add your first name.</span></div>
+    <div class="field"><label class="sr-only" for="{{ uid }}-last">Last name</label><input id="{{ uid }}-last" name="fields[last_name]" autocomplete="family-name" placeholder="Last name" required data-err="last"><span class="error" data-error-for="last" hidden>Please add your last name.</span></div>
+    <div class="field"><label class="sr-only" for="{{ uid }}-email">Email</label><input id="{{ uid }}-email" name="fields[email]" type="email" autocomplete="email" placeholder="Email" required><span class="error" data-error-for="email" hidden>Check the email address; it looks incomplete.</span></div>
+    <button class="btn btn-primary" type="submit">Send it to me</button>
+  </div>
+  <p class="form-status" role="status" aria-live="polite" hidden></p>
+</form>
+{%- endif %}

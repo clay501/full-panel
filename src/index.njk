@@ -48,7 +48,7 @@ ctaFlush: true
       </div>
       <div class="cards">
         {%- for s in services %}
-        <article class="card"><div class="card-top"><div class="num" aria-hidden="true">{{ loop.index }}</div>{% if s.start %}<span class="tag">Start here</span>{% endif %}</div><h3 class="h3">{{ s.name }}</h3><p>{{ s.short }}</p><div class="foot"><a class="link arrow" href="/services/#{{ s.id }}">More<span class="visually-hidden"> on {{ s.name }}</span></a></div></article>
+        <article class="card"><div class="card-top"><div class="num" aria-hidden="true">{{ loop.index }}</div>{% if s.start %}<span class="tag">Start here</span>{% endif %}</div><h3 class="h3">{{ s.name }}</h3><p>{{ s.short }}</p><div class="foot"><a class="link arrow" href="/services/{{ s.slug }}/">More<span class="visually-hidden"> on {{ s.name }}</span></a></div></article>
         {%- endfor %}
       </div>
     </div>

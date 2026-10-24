@@ -29,6 +29,7 @@ ctaFlush: true
           <p class="lede" style="color:var(--ink)">{{ s.intro }}</p>
           <div><h4>What I do</h4><ul class="ticks">{% for d in s.does %}<li>{{ d }}</li>{% endfor %}</ul></div>
           <div><h4>What you get</h4><p>{{ s.get }}</p></div>
+          <p><a class="link arrow" href="/services/{{ s.slug }}/">Details and a consult request for this service</a></p>
           {%- if s.ethics %}
           <aside class="ethics" aria-label="Ethics note"><span class="ethics-label">Ethics</span><p>{{ s.ethics }}</p></aside>
           {%- endif %}

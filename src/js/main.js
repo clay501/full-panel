@@ -20,23 +20,38 @@
     try{navigator.clipboard.writeText(t).then(function(){cp.textContent="Copied"},sel)}catch(e){sel()}
     setTimeout(function(){cp.textContent="Copy"},2000)});
 
-  // form (Formspree, same setup as layered.health)
-  var form=document.getElementById("consult-form");
-  if(!form)return;
-  var status=document.getElementById("form-status"),btn=document.getElementById("f-submit");
-  function say(t){status.hidden=false;status.textContent=t}
-  function check(id,fieldId,errId,bad){var el=document.getElementById(id);document.getElementById(fieldId).classList.toggle("invalid",bad);el.setAttribute("aria-invalid",String(bad));document.getElementById(errId).hidden=!bad;return el}
-  form.addEventListener("submit",function(e){e.preventDefault();
-    var n=document.getElementById("f-name"),em=document.getElementById("f-email");
-    var badN=!n.value.trim(),badE=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim());
-    check("f-name","name-field","f-name-err",badN);check("f-email","email-field","f-email-err",badE);
-    if(badN){n.focus();return}if(badE){em.focus();return}
-    var endpoint=form.getAttribute("data-endpoint");
-    if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co and I'll follow up to find a time.");return}
-    btn.disabled=true;say("Sending…");
-    fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:new FormData(form)})
-      .then(function(r){if(!r.ok)throw new Error();form.reset();track("generate_lead",{form_id:"consult-form"});say("Thanks, your request is in. I'll be in touch to find a time.")})
-      .catch(function(){say("Something went wrong. Please try again, or email info@fullpanel.co.")})
-      .then(function(){btn.disabled=false});
+  // forms: consult requests (Formspree, same setup as layered.health) and
+  // email signups. A successful consult request sends generate_lead and a
+  // signup sends sign_up; neither sends what the person typed.
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function setInvalid(form,input,errFor,bad){var field=input.closest(".field");if(field)field.classList.toggle("invalid",bad);input.setAttribute("aria-invalid",String(bad));var err=form.querySelector('[data-error-for="'+errFor+'"]');if(err)err.hidden=!bad}
+  [].forEach.call(document.querySelectorAll("form[data-form]"),function(form){
+    var kind=form.getAttribute("data-form"),status=form.querySelector(".form-status"),btn=form.querySelector('[type="submit"]');
+    function say(t){status.hidden=false;status.textContent=t}
+    form.addEventListener("submit",function(e){e.preventDefault();
+      // required text boxes (marked data-err) must be filled in; email must look like one
+      var firstBad=null,emailIn=form.querySelector('input[type="email"]');
+      [].forEach.call(form.querySelectorAll("input[data-err]"),function(input){var bad=!input.value.trim();setInvalid(form,input,input.getAttribute("data-err"),bad);if(bad&&!firstBad)firstBad=input});
+      var badE=!EMAIL_RE.test(emailIn.value.trim());setInvalid(form,emailIn,"email",badE);if(badE&&!firstBad)firstBad=emailIn;
+      if(firstBad){firstBad.focus();return}
+      var endpoint=form.getAttribute("data-endpoint");
+      if(!endpoint){say("This form isn't connected yet. Please email info@fullpanel.co.");return}
+      var srcIn=form.querySelector('[name="source"],[name="fields[signup_source]"]'),source=srcIn?srcIn.value:"";
+      var data=new FormData(form);
+      // the hidden trap field is only ever filled in by bots; Formspree checks
+      // it itself, MailerLite doesn't know it, so for signups check it here
+      if(kind!=="consult"){if(data.get("_gotcha")){form.reset();say(form.getAttribute("data-success"));return}data.delete("_gotcha")}
+      btn.disabled=true;say("Sending\u2026");
+      // Formspree answers {ok:true}; MailerLite answers {success:true}, and
+      // reports errors with a 200 status, so check the body as well
+      fetch(endpoint,{method:"POST",headers:{"Accept":"application/json"},body:data})
+        .then(function(r){if(!r.ok)throw new Error();return r.json().catch(function(){return{}})})
+        .then(function(d){if(d.ok===false||d.success===false)throw new Error();form.reset();
+          if(kind==="consult")track("generate_lead",{form_id:"consult-form",form_source:source});
+          else track("sign_up",{method:"email",form_source:source});
+          say(form.getAttribute("data-success"))})
+        .catch(function(){say("Something went wrong. Please try again, or email info@fullpanel.co.")})
+        .then(function(){btn.disabled=false});
+    });
   });
 })();

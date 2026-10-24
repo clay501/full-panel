@@ -10,6 +10,19 @@ const faq = read("faq");
 const orgId = `${site.url}/#organization`;
 const personId = `${site.url}/about/#clay`;
 
+function serviceNode(s) {
+  return {
+    "@type": "Service",
+    "@id": `${site.url}/services/${s.slug}/#service`,
+    name: s.name,
+    serviceType: s.name,
+    description: s.short,
+    url: `${site.url}/services/${s.slug}/`,
+    provider: { "@id": orgId },
+    audience: { "@type": "Audience", audienceType: "Private-practice therapists" },
+  };
+}
+
 export default {
   organization: {
     "@type": "Organization",
@@ -28,6 +41,7 @@ export default {
       addressCountry: "US",
     },
     founder: { "@id": personId },
+    sameAs: [site.linkedin],
   },
 
   person: {
@@ -46,16 +60,8 @@ export default {
     ],
   },
 
-  services: services.map((s) => ({
-    "@type": "Service",
-    "@id": `${site.url}/services/#${s.id}`,
-    name: s.name,
-    serviceType: s.name,
-    description: s.short,
-    url: `${site.url}/services/#${s.id}`,
-    provider: { "@id": orgId },
-    audience: { "@type": "Audience", audienceType: "Private-practice therapists" },
-  })),
+  services: services.map(serviceNode),
+  ...Object.fromEntries(services.map((s) => [`service-${s.slug}`, serviceNode(s)])),
 
   faq: {
     "@type": "FAQPage",

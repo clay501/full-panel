@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
 <link rel="stylesheet" href="{{ "/css/styles.css" | bust }}">
 <script type="application/ld+json">
-{{ schema | jsonLd(schemaNodes) | safe }}
+{{ schema | jsonLd(schemaNodes, schemaExtra) | safe }}
 </script>
 </head>
 <body>
@@ -57,7 +57,7 @@
     <nav aria-label="Main">
       <ul class="nav">
         {%- for item in site.nav %}
-        <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
         {%- endfor %}
         <li><a class="btn btn-primary" href="/contact/">Book a free consult</a></li>
       </ul>
@@ -68,7 +68,7 @@
     <ul>
       <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
       {%- for item in site.nav %}
-      <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
       {%- endfor %}
       <li><a class="btn btn-primary" href="/contact/">Book a free consult</a></li>
     </ul>
@@ -82,19 +82,30 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-grid">
-      <div>
+      <div class="foot-brand">
         <a class="lockup" href="/" style="text-decoration:none" aria-label="Full Panel, home">
           {% include "partials/mark.njk" %}
           <span><span class="wordmark">Full Panel</span><span class="tagline">{{ site.tagline }}</span></span>
         </a>
+        <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
+        <a class="social" href="{{ site.linkedin }}" target="_blank" rel="noopener" aria-label="Full Panel on LinkedIn">
+          <svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="var(--pine)"/><path transform="translate(7.2 7.2) scale(.9)" fill="var(--on-pine)" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+        </a>
       </div>
       <ul class="foot-links">
-        {%- for item in site.nav %}
+        {%- for item in site.nav %}{% if item.url != "/blog/" %}
         <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-        {%- endfor %}
+        {%- endif %}{% endfor %}
         <li><a href="/contact/">Book a free consult</a></li>
       </ul>
-      <p class="small muted">Full Panel is a marketing and practice growth consultancy based in Philadelphia. It isn't a clinical practice and doesn't provide therapy.</p>
+      <div class="foot-links foot-group">
+        <a href="/blog/">Guides</a>
+        <ul>
+          {%- for g in collections.guide | byOrder %}
+          <li><a href="{{ g.url }}">{{ g.data.footerTitle or g.data.title }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
     </div>
     <div class="legal"><span>© {{ "now" | year }} Full Panel</span><span>fullpanel.co</span></div>
   </div>

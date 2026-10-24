@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: services
+  size: 1
+  alias: service
+  addAllPagesToCollections: true
+permalink: "/services/{{ service.slug }}/"
+eleventyComputed:
+  title: "{{ service.name | safe }}"
+  description: "{{ service.short | safe }}"
+  ctaHeading: "Not sure this is the one? That's what the consult is for."
+ctaFlush: true
+---
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/services/">Services</a></p>
+      <div class="section-head" style="margin-bottom:0">
+        <div class="num" aria-hidden="true">{{ pagination.pageNumber + 1 }}</div>
+        <h1 class="h1">{{ service.name }}</h1>
+        {%- if service.start %}
+        <span><span class="tag">Start here</span></span>
+        {%- endif %}
+        <p class="lede">{{ service.intro }}</p>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap svc-page">
+      <div class="svc-body">
+        <div><h4>What I do</h4><ul class="ticks">{% for d in service.does %}<li>{{ d }}</li>{% endfor %}</ul></div>
+        <div><h4>What you get</h4><p>{{ service.get }}</p></div>
+        {%- if service.ethics %}
+        <aside class="ethics" aria-label="Ethics note"><span class="ethics-label">Ethics</span><p>{{ service.ethics }}</p></aside>
+        {%- endif %}
+        <div><h4>How it fits</h4><p>Most engagements start with the Practice Growth Audit, which tells us which services will make a difference for your practice and in what order. <a class="link" href="/how-it-works/">How an engagement works</a></p></div>
+        <div><h4>Other services</h4><div class="other-svcs">{% for o in services %}{% if o.id != service.id %}<a href="/services/{{ o.slug }}/">{{ o.name }}</a>{% endif %}{% endfor %}</div></div>
+      </div>
+      {% set uid = "c" %}{% include "partials/consult-form.njk" %}
+    </div>
+  </section>
+
+  {% include "partials/cta.njk" %}
