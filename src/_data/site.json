@@ -9,6 +9,7 @@
   "subscribeEndpoint": "https://assets.mailerlite.com/jsonp/2738934/forms/202223437339428309/subscribe",
   "formEndpoint": "https://formspree.io/f/xrpewkwj",
   "linkedin": "https://www.linkedin.com/company/full-panel/",
+  "linkedinRecommendations": "",
   "bookingUrl": "https://calendar.proton.me/bookings#rieTZkIwYjI50-xCP7rkngn9XPO14nn6ZuWEq7M30zE=",
   "nav": [
     { "title": "Services", "url": "/services/" },

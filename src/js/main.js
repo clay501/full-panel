@@ -17,7 +17,7 @@
         // once its own slide-up ends, drop the classes so later hovers and sticky children behave normally
         el.addEventListener("transitionend",function done(e){if(e.target!==el||e.propertyName!=="transform")return;el.removeEventListener("transitionend",done);el.classList.remove("reveal","in");el.style.removeProperty("--reveal-delay")})});
     },{rootMargin:"0px 0px -8% 0px",threshold:.12});
-    [].forEach.call(document.querySelectorAll(".card,.step,.principles li,.facts li,.feel-list li,.svc,.timeline li,.faq details,.cta,.capture"),function(el){
+    [].forEach.call(document.querySelectorAll(".card,.step,.principles li,.facts li,.feel-list li,.svc,.timeline li,.faq details,.cta,.capture,.rec-featured,.rec-card"),function(el){
       if(el.getBoundingClientRect().top<innerHeight)return;
       el.classList.add("reveal");revealIO.observe(el)});
 

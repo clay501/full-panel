@@ -1,0 +1,25 @@
+{
+  "featured": {
+    "quote": "\"Clay has a special gift of being able to connect with people, gain their trust and effectively communicate sometimes complex concepts. He does so with heart and humanity.\"",
+    "name": "Betty Nelson",
+    "role": "Marketing, Operations and Customer Experience Executive · Worked with Clay at Patina",
+    "photo": "/assets/photos/recs/betty-nelson.webp"
+  },
+  "cards": [
+    {
+      "label": "Finding the right message",
+      "quote": "\"…a natural ability to articulate a brand's mission and deliver segmented value propositions in ways that are concise, compelling, and impactful.\"",
+      "name": "Alissa Nulsen, MSW, MPH",
+      "alt": "Alissa Nulsen",
+      "role": "Healthcare Executive, Business Development & Strategy · Managed Clay at Patina",
+      "photo": "/assets/photos/recs/alissa-nulsen.webp"
+    },
+    {
+      "label": "Sharing what works",
+      "quote": "\"…proactively shared his knowledge and best practices to help elevate the entire team.\"",
+      "name": "Hristina Bell",
+      "role": "GTM Leader, AI & Security · Managed Clay at Doppler",
+      "photo": "/assets/photos/recs/hristina-bell.webp"
+    }
+  ]
+}

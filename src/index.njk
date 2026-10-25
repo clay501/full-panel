@@ -88,7 +88,33 @@ ctaFlush: true
     </div>
   </section>
 
+  {#- Recommendations from before Full Panel (copy in _data/recommendations.json; quotes are word for word from LinkedIn) #}
+  {%- set r = recommendations %}
   <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow accent">Before Full Panel</p>
+        <h2 class="h2">What it's like to work with me</h2>
+        <p class="lede">Full Panel is new, so I don't have client stories to share yet. Here's what managers and colleagues from my health care and sales roles have said about working with me.</p>
+      </div>
+      <figure class="rec-featured">
+        <blockquote><p>{{ r.featured.quote }}</p></blockquote>
+        <figcaption class="rec-by"><img src="{{ r.featured.photo }}" alt="{{ r.featured.name }}" width="56" height="56" loading="lazy" decoding="async"><span><span class="rec-name">{{ r.featured.name }}</span><span class="rec-role">{{ r.featured.role }}</span></span></figcaption>
+      </figure>
+      <div class="rec-cards">
+        {%- for c in r.cards %}
+        <figure class="rec-card">
+          <p class="eyebrow muted-eyebrow">{{ c.label }}</p>
+          <blockquote><p>{{ c.quote }}</p></blockquote>
+          <figcaption class="rec-by"><img src="{{ c.photo }}" alt="{{ c.alt or c.name }}" width="48" height="48" loading="lazy" decoding="async"><span><span class="rec-name">{{ c.name }}</span><span class="rec-role">{{ c.role }}</span></span></figcaption>
+        </figure>
+        {%- endfor %}
+      </div>
+      <p class="fine rec-note">These are from my roles before Full Panel, not from therapy practices.{% if site.linkedinRecommendations %} <a class="link" href="{{ site.linkedinRecommendations }}" target="_blank" rel="noopener">Read the full recommendations on LinkedIn</a>.{% endif %}</p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow accent">Ethics-aligned</p>

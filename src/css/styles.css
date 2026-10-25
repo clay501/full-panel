@@ -335,6 +335,22 @@ h1,h2,h3,p,ul,ol{margin:0}
 @media (max-width:900px){.svc-page{grid-template-columns:1fr;gap:40px}.svc-page .form{position:static}.guide-list{grid-template-columns:1fr}}
 @media (max-width:640px){.page-hero{padding-block:48px 32px}.article h2{font-size:24px;line-height:30px}.article p,.article li{font-size:17px;line-height:28px}.capture{padding:20px}}
 
+/* home: recommendations from before Full Panel */
+.rec-featured{margin:0 0 40px;max-width:760px}
+.rec-featured blockquote,.rec-card blockquote{margin:0}
+.rec-featured blockquote p{margin:0;font:italic 400 24px/34px var(--serif);font-variation-settings:"opsz" 24;color:var(--ink)}
+.rec-by{display:flex;align-items:center;gap:12px;margin-top:20px}
+.rec-by img{flex:none;border-radius:50%}
+.rec-name{display:block;font:600 15px/20px var(--sans);color:var(--ink)}
+.rec-role{display:block;font-size:15px;line-height:22px;color:var(--ink-muted)}
+.rec-cards{display:grid;grid-template-columns:1fr;gap:24px}
+@media (min-width:768px){.rec-cards{grid-template-columns:1fr 1fr}}
+.rec-card{margin:0;display:flex;flex-direction:column;gap:12px;padding:32px;background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-lg)}
+.rec-card blockquote p{margin:0;font:400 17px/28px var(--sans);color:var(--ink)}
+.rec-card .rec-by{margin-top:auto;padding-top:12px}
+.rec-note{margin-top:24px}
+@media (max-width:640px){.rec-featured blockquote p{font-size:20px;line-height:30px}.rec-card{padding:24px}}
+
 /* pricing page, and the price box on service pages */
 .price-list{list-style:none;padding:0;display:grid;gap:0;border-top:1px solid var(--line-strong)}
 .price-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;padding-block:28px;border-bottom:1px solid var(--line-strong);align-items:start}
