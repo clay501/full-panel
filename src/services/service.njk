@@ -33,6 +33,12 @@ ctaFlush: true
         {%- if service.ethics %}
         <aside class="ethics" aria-label="Ethics note"><span class="ethics-label">Ethics</span><p>{{ service.ethics }}</p></aside>
         {%- endif %}
+        {%- for price in pricing.services %}{% if price.id == service.id %}
+        <div class="price-box"><h4>Pricing</h4>
+          <dl class="price-pair"><div><dt>{{ pricing.tiers.small }} <span>({{ pricing.tiers.small_note }})</span></dt><dd>{{ price.small }}</dd></div><div><dt>{{ pricing.tiers.large }} <span>({{ pricing.tiers.large_note }})</span></dt><dd>{{ price.large }}</dd></div></dl>
+          <p class="small muted" style="margin:0">You'll get a written quote before any work begins. <a class="link" href="/pricing/">See all pricing</a></p>
+        </div>
+        {%- endif %}{% endfor %}
         <div><h4>How it fits</h4><p>Most engagements start with the Practice Growth Audit, which tells us which services will make a difference for your practice and in what order. <a class="link" href="/how-it-works/">How an engagement works</a></p></div>
         <div><h4>Other services</h4><div class="other-svcs">{% for o in services %}{% if o.id != service.id %}<a href="/services/{{ o.slug }}/">{{ o.name }}</a>{% endif %}{% endfor %}</div></div>
       </div>

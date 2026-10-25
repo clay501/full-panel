@@ -13,6 +13,7 @@
   "nav": [
     { "title": "Services", "url": "/services/" },
     { "title": "How it works", "url": "/how-it-works/" },
+    { "title": "Pricing", "url": "/pricing/" },
     { "title": "Guides", "url": "/blog/" },
     { "title": "About", "url": "/about/" }
   ]

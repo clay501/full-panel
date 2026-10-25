@@ -17,7 +17,11 @@
   },
   {
     "question": "What does it cost?",
-    "answer": "It depends on which services you need and the size of your practice. After our consult, I'll give you a clear quote before any work begins. Paid ad budgets are separate and can start around $50 a month."
+    "answer": "I publish all my prices, the same way I'd encourage you to publish yours. An audit starts at $750 for small practices (5 clinicians or fewer), and every engagement begins with a free consult and Practice Snapshot.",
+    "link": {
+      "text": "See full pricing",
+      "url": "/pricing/"
+    }
   },
   {
     "question": "Will you need access to client information?",

@@ -1,0 +1,38 @@
+---
+layout: layouts/base.njk
+title: "Pricing for therapy practice marketing"
+description: "Full Panel publishes its prices: practice growth audits, referral development, directories, SEO, ads and social strategy for therapy practices."
+ctaHeading: "Start with a free Practice Snapshot."
+---
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Pricing</p>
+      <h1 class="h1" style="max-width:760px">Clear prices, posted up front.</h1>
+      <p class="lede">I publish my prices for the same reason I'd ask you to publish yours: people decide more easily when they know what something costs before they reach out. It's how I approach therapy, too, honestly and transparently.</p>
+      <p class="meta-line">{{ pricing.tiers.small }}: {{ pricing.tiers.small_note }}. {{ pricing.tiers.large }}: {{ pricing.tiers.large_note }}.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <ul class="price-list">
+        {%- for p in pricing.services %}
+        <li class="price-row">
+          <div class="price-name"><h2 class="h3">{{ p.name }}</h2><p>{{ p.included }}</p></div>
+          <dl class="price-pair"><div><dt>{{ pricing.tiers.small }}</dt><dd>{{ p.small }}</dd></div><div><dt>{{ pricing.tiers.large }}</dt><dd>{{ p.large }}</dd></div></dl>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">How pricing works</p><h2 class="h2">No surprises, the same way you'd treat a client.</h2></div>
+      <ul class="principles how-list">
+        {%- for h in pricing.how %}
+        <li><strong>{{ h[0] }}</strong> <span>{{ h[1] }}</span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+
+  {% include "partials/cta.njk" %}

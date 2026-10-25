@@ -67,7 +67,7 @@ ctaFlush: true
       </div>
       <div class="faq">
         {%- for item in faq %}
-        <details><summary>{{ item.question }}</summary><p>{{ item.answer }}</p></details>
+        <details><summary>{{ item.question }}</summary><p>{{ item.answer }}{% if item.link %} <a class="link" href="{{ item.link.url }}">{{ item.link.text }}</a>{% endif %}</p></details>
         {%- endfor %}
       </div>
     </div>

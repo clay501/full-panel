@@ -19,7 +19,8 @@ npm run build    # writes the finished site to _site/
 - `src/_includes/partials/` — the logo mark, the slot panel, the "Book a free consult" banner, the consult form, the email signup box and the consult box placed halfway through each guide
 - `src/_data/site.json` — site name, email, nav, LinkedIn page, GA4 ID, Formspree endpoint, email signup endpoint and the Proton booking link
 - `src/_data/services.json` — the six services; the home page cards, the Services page and each service's own page all come from here, so a change goes in one place
-- `src/_data/faq.json` — the questions on How it works; the FAQPage schema comes from here too
+- `src/_data/pricing.json` — every price, the two practice-size tiers and the "How pricing works" points. The Pricing page and the price box on each service page both read it, so a price change goes in one place. The "What does it cost?" FAQ answer quotes the audit price, so update it too.
+- `src/_data/faq.json` — the questions on How it works; the FAQPage schema comes from here too. An answer can add a `link` ({ text, url }) shown after it.
 - `src/_data/schema.js` — structured data (JSON-LD): Organization, Person, Service and FAQPage
 - `src/_data/panel.json` — the week-of-slots illustration on the home page
 - `src/css/styles.css` — all styles; brand colors are CSS variables at the top
