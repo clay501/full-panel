@@ -48,6 +48,11 @@
   document.addEventListener("click",function(e){var a=e.target.closest('a[href^="https://calendar.proton.me/bookings"]');if(a)track("booking_click",{link_url:a.href})});
   document.addEventListener("click",function(e){var a=e.target.closest("a[data-cta]");if(a)track("consult_cta_click",{form_source:a.getAttribute("data-cta")})});
 
+  // founders rate: /contact/?offer=founders adds it to the consult request and says so above the form
+  if(/[?&]offer=founders(&|$)/.test(location.search)){
+    [].forEach.call(document.querySelectorAll('input[name="offer"]'),function(i){i.value="Founders rate (40% off setup services)"});
+    [].forEach.call(document.querySelectorAll("[data-offer-note]"),function(n){n.hidden=false})}
+
   // copy email
   var cp=document.getElementById("copy");
   if(cp)cp.addEventListener("click",function(){var t=document.getElementById("email").textContent;

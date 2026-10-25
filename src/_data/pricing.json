@@ -1,0 +1,31 @@
+{
+  "tiers": {"small": "Small practice", "small_note": "5 clinicians or fewer", "large": "Medium to large practice", "large_note": "6 or more clinicians"},
+  "services": [
+    {"id": "snapshot", "name": "Practice Snapshot", "small": "Free", "large": "Free",
+     "included": "A first look at your website, Psychology Today profile and Google Business Profile, with your top three priorities, shared on our consult call."},
+    {"id": "audit", "name": "Practice Growth Audit & Roadmap", "small": "$750", "large": "$1,500",
+     "included": "Research on how clients find therapists in your market, a map of where your clients come from now, and a branded strategy deck with priorities in order, plus a walkthrough call."},
+    {"id": "referrals", "name": "Referral Partner Development", "small": "$1,500 setup; ongoing outreach from $300/month", "large": "$2,500 setup; ongoing outreach from $500/month",
+     "included": "A prioritized list of local referral prospects, a structured outreach playbook, referral materials, a follow-up cadence, and employer and EAP partnership outreach. Ongoing outreach keeps the follow-up going for you."},
+    {"id": "directories", "name": "Directory & Listings Management", "small": "$150 per profile; 3 profiles for $400; full listings package $600", "large": "$150 per profile; bundles quoted by number of clinicians",
+     "included": "Choosing the right directories and rewriting and optimizing each profile. The full package adds an insurance directory check and claiming your Healthgrades and Zocdoc profiles."},
+    {"id": "search", "name": "Search Visibility: SEO + AI Search", "small": "$750 setup, then $300/month", "large": "$1,250 setup, then $600/month",
+     "included": "Setup covers your Google Business Profile, consistent name, address and phone listings, schema, and two service and location pages. A full website rebuild is quoted separately. Monthly work adds pages, keeps listings current and tracks visibility in search and AI answers."},
+    {"id": "ads", "name": "Paid Advertising", "small": "$250 setup, then from $50/month", "large": "$750 setup, then from $50/month",
+     "included": "Choosing the right mix of Google, Meta and LinkedIn, ad copy, campaign setup and healthcare ad-policy compliance. Ad spend is separate and paid directly to the platforms."},
+    {"id": "social", "name": "Social Media & Content Strategy", "small": "$600", "large": "$1,200",
+     "included": "A social audit with real numbers, content pillars, brand voice and bio rewrites, post concepts and calls to action."},
+    {"id": "social-ongoing", "name": "Ongoing social media and content", "small": "From $500/month", "large": "From $500/month",
+     "included": "Content development and management, scoped to your plan."},
+    {"id": "retainer", "name": "Monthly strategy retainer", "small": "From $495/month", "large": "From $895/month",
+     "included": "A steady monthly rhythm: referral follow-up, listing upkeep and a check-in on what's working."}
+  ],
+  "how": [
+    ["Start free.", "Every engagement begins with a free consult and Practice Snapshot. There's no obligation to do anything after it."],
+    ["A written quote before any work.", "You'll know exactly what's included and what it costs before you pay anything."],
+    ["Practice size.", "Small practice prices are for practices with 5 clinicians or fewer. Medium to large practice prices are for practices with 6 or more."],
+    ["Ad spend is separate.", "Paid Advertising fees cover setup and management. What you spend on Google, Meta or LinkedIn is paid directly to them."],
+    ["No long contracts.", "Monthly services can be paused or stopped with notice."],
+    ["Ethics built in.", "Nothing I do asks your clients for reviews, uses their stories, or puts tracking on your site that could expose who's seeking care."]
+  ]
+}

@@ -9,6 +9,8 @@
         {%- else %}
         <input type="hidden" name="_subject" value="New Full Panel consult request">
         <input type="hidden" name="source" value="Contact page">
+        <input type="hidden" name="offer" value="">
+        <p class="offer-note" data-offer-note hidden>Founders rate noted. I'll include 40% off setup services in your quote.</p>
         {%- endif %}
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
         <div class="field"><label for="{{ uid }}-name">Your name</label><input id="{{ uid }}-name" name="name" autocomplete="name" required data-err="name"><span class="error" data-error-for="name" hidden>Please add your name.</span></div>

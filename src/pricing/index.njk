@@ -1,0 +1,51 @@
+---
+layout: layouts/base.njk
+title: "Pricing for therapy practice marketing"
+description: "Full Panel publishes its prices: practice growth audits, referral development, directories, SEO, ads and social strategy for therapy practices."
+ctaHeading: "Start with a free Practice Snapshot."
+---
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Pricing</p>
+      <h1 class="h1" style="max-width:760px">Clear prices, posted up front.</h1>
+      <p class="lede">While others don’t, I publish my prices because I approach this work in the same way that I do therapy: with honesty and transparency.</p>
+      <p class="meta-line">{{ pricing.tiers.small }}: {{ pricing.tiers.small_note }}. {{ pricing.tiers.large }}: {{ pricing.tiers.large_note }}.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;padding-bottom:48px">
+    <div class="wrap">
+      <div class="founders">
+        <p class="founders-num" aria-hidden="true">40%</p>
+        <div class="founders-body">
+          <p class="eyebrow">Founders rate</p>
+          <h2 class="h2">40% off setup services for early clients.</h2>
+          <p>Full Panel is new, and I'm genuinely grateful to the practices that are willing to join me this early in the venture. As a reflection of that, I'm offering a founders rate of 40% off setup services.</p>
+          <a class="btn btn-primary" href="/contact/?offer=founders" data-cta="founders-rate">Claim your founders rate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <ul class="price-list">
+        {%- for p in pricing.services %}
+        <li class="price-row">
+          <div class="price-name"><h2 class="h3">{{ p.name }}</h2><p>{{ p.included }}</p></div>
+          <dl class="price-pair"><div><dt>{{ pricing.tiers.small }}</dt><dd>{{ p.small }}</dd></div><div><dt>{{ pricing.tiers.large }}</dt><dd>{{ p.large }}</dd></div></dl>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">How pricing works</p><h2 class="h2">No surprises, the same way you'd treat a client.</h2></div>
+      <ul class="principles how-list">
+        {%- for h in pricing.how %}
+        <li><strong>{{ h[0] }}</strong> <span>{{ h[1] }}</span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+
+  {% include "partials/cta.njk" %}
