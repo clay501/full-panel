@@ -67,4 +67,4 @@ The strongest networks run both ways. Refer clients to colleagues when they're t
 
 A handful of providers who know exactly who to send you, a few colleagues you trade referrals with, and a spreadsheet that tells you who you haven't talked to in a while. That's it. It isn't glamorous, but it's the most reliable source of good-fit clients a practice can build.
 
-Want help building the list and the first round of outreach? That's what Full Panel's Referral Partner Development service does. [Book a free consult](/contact/).
+Want help building the list and the first round of outreach? That's what Full Panel's [Referral Partner Development](/services/referral-partner-development/) service does. [Book a free consult](/contact/).

@@ -71,4 +71,4 @@ This is the section most profiles get wrong. In the same Thriveworks survey, 95%
 - [ ] Ask every new client how they found you, and log the source (not the person) each month.
 - [ ] Review the whole profile once a quarter, and update your photo every year or two.
 
-If you'd rather have someone rewrite your profile and the rest of your directory listings with you, that's part of Full Panel's Directory & Listings Management service. [Book a free consult](/contact/).
+If you'd rather have someone rewrite your profile and the rest of your directory listings with you, that's part of Full Panel's [Directory & Listings Management](/services/directory-listings-management/) service. [Book a free consult](/contact/).
