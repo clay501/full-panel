@@ -100,6 +100,6 @@ When a client does consent, that short note does more than any brochure. It tell
 - Send the email above, adapted to each one.
 - Put a reminder on your calendar for two weeks from today.
 
-If you'd like help building the list or the one-pager, that's exactly what Full Panel's Referral Partner Development service is for. [Book a free consult](/contact/).
+If you'd like help building the list or the one-pager, that's exactly what Full Panel's [Referral Partner Development](/services/referral-partner-development/) service is for. [Book a free consult](/contact/).
 
 *Sources: [Thriveworks, therapy-seeking decisions, Nov. 2025](https://thriveworks.com/help-with/research/therapy-seeking-decisions-2025/) · [Thriveworks, 2026 Pulse on Mental Health](https://thriveworks.com/help-with/research/pulse-on-mental-health-report/) · [ACA Code of Ethics (2014)](https://www.memphis.edu/cepr/docs/forms/pdfs/clinical_fieldwork/2014_aca_code_of_ethics.pdf)*

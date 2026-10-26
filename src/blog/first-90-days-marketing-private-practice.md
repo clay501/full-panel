@@ -65,6 +65,6 @@ Then set up the habits that keep everything running:
 
 By the end of three months, you should have a website and profiles that say clearly who you help and what it costs, a referral list with real names and a calendar reminder to tend it, and a few months of data on where your inquiries come from. That's a practice that can grow steadily, without you having to become a marketer.
 
-If you'd like a plan built around your specific market, Full Panel's Practice Growth Audit & Roadmap starts exactly here. [Book a free consult](/contact/).
+If you'd like a plan built around your specific market, Full Panel's [Practice Growth Audit & Roadmap](/services/practice-growth-audit/) starts exactly here. [Book a free consult](/contact/).
 
 *Sources: [Thriveworks, Nov. 2025](https://thriveworks.com/help-with/research/therapy-seeking-decisions-2025/) · [Reframe, therapist marketing budget, 2026](https://reframepractice.com/guides/therapist-marketing-budget)*

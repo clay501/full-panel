@@ -46,6 +46,6 @@ Prices are as published or reported in mid-2026. They change often, so confirm b
 
 For a new solo private-pay practice: a sharp Psychology Today profile, one free or low-cost niche directory, and a well-kept Google Business Profile. For an in-network practice: accurate payer directories first, then Psychology Today, then decide whether an insurance platform's convenience is worth its cut.
 
-Full Panel's Directory & Listings Management service audits your current listings, picks the ones worth your money and rewrites your profiles. [Book a free consult](/contact/).
+Full Panel's [Directory & Listings Management](/services/directory-listings-management/) service audits your current listings, picks the ones worth your money and rewrites your profiles. [Book a free consult](/contact/).
 
 *Sources: [CuraReach, Aug. 2026](https://curareach.com/best-therapist-directories/) · [Therapy Flow, May 2026](https://mytherapyflow.com/best-therapist-directories/) · [ChoosingTherapy, Aug. 2026](https://www.choosingtherapy.com/psychology-today-review/) · [Headway for providers](https://headway.co/for-providers) · [Inclusive Therapists](https://www.inclusivetherapists.com/join) · [Thriveworks, Nov. 2025](https://thriveworks.com/help-with/research/therapy-seeking-decisions-2025/)*
