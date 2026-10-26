@@ -12,10 +12,10 @@
   "linkedinRecommendations": "https://www.linkedin.com/in/clayklaus-wade/details/recommendations/",
   "bookingUrl": "https://calendar.proton.me/bookings#rieTZkIwYjI50-xCP7rkngn9XPO14nn6ZuWEq7M30zE=",
   "nav": [
+    { "title": "The process", "url": "/how-it-works/" },
     { "title": "Services", "url": "/services/" },
-    { "title": "How it works", "url": "/how-it-works/" },
-    { "title": "Pricing", "url": "/pricing/" },
     { "title": "Guides", "url": "/blog/" },
+    { "title": "Pricing", "url": "/pricing/" },
     { "title": "About", "url": "/about/" }
   ]
 }
