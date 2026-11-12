@@ -25,15 +25,17 @@
     var ease=function(t){return 1-Math.pow(1-t,4)};
     var countIO=new IntersectionObserver(function(entries){
       entries.forEach(function(en){if(!en.isIntersecting)return;countIO.unobserve(en.target);
-        var el=en.target,shown=el.firstChild,target=+el.getAttribute("data-count"),suffix=el.getAttribute("data-suffix"),start=null,dur=1400;
-        function frame(now){if(start===null)start=now;var t=Math.min((now-start)/dur,1);shown.textContent=Math.round(target*ease(t))+suffix;if(t<1)requestAnimationFrame(frame)}
+        var el=en.target,target=+el.getAttribute("data-count"),suffix=el.getAttribute("data-suffix"),start=null,dur=1400;
+        function frame(now){if(start===null)start=now;var t=Math.min((now-start)/dur,1);el.setAttribute("data-shown",Math.round(target*ease(t))+suffix);if(t<1)requestAnimationFrame(frame);else el.classList.remove("counting")}
         requestAnimationFrame(frame)});
     },{threshold:.6});
     [].forEach.call(document.querySelectorAll(".fact-num"),function(el){
       var m=el.textContent.trim().match(/^(\d+)(.*)$/);if(!m)return;
-      // screen readers get the real figure; the ticking copy is hidden from them
+      // the real figure stays the element's only text, so screen readers, search and AI crawlers
+      // read "300+" and never "0+". The ticking copy is drawn by CSS (::before, with empty alt text).
       el.setAttribute("data-count",m[1]);el.setAttribute("data-suffix",m[2]);
-      el.innerHTML='<span aria-hidden="true">0'+m[2]+'</span><span class="visually-hidden">'+m[0]+'</span>';
+      el.setAttribute("data-shown","0"+m[2]);el.classList.add("counting");
+      el.innerHTML='<span class="fact-real">'+m[0]+'</span>';
       countIO.observe(el)});
   }
 
